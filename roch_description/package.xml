@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <name>roch_description</name>
+  <version>0.1.0</version>
+  <description>SawYer Roch URDF description</description>
+
+
+  <author email="carl@softrobtech.com">Carl</author>
+
+  <maintainer email="carl@softrobtech.com">Carl</maintainer>
+
+
+  <url type="bugtracker">https://github.com/GaiTech-Robotics/roch_description/issues</url>
+  <url type="repository">https://github.com/GaiTech-Robotics/roch_description</url>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>urdf</run_depend>
+  <run_depend>xacro</run_depend>
+  <run_depend>ur_description</run_depend>
+
+
+  <export>
+  </export>
+</package>

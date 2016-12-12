@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+    - Base      : roch
+    - Stacks    : standard
+    - 2d laser  : ls01c
+    - 3d Sensor : kinect
+-->    
+<robot name="roch" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find roch_description)/urdf/roch_library.urdf.xacro" />
+  
+  <roch/>
+  <stack_standard                 parent="base_link"/>
+  <sensor_kinect                  parent="base_link"/>
+  <ls_ls01c                       parent="base_link"/>
+</robot>

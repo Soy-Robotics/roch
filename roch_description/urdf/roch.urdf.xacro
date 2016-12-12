@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+
+<robot name="roch" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find roch_description)/urdf/wheel.urdf.xacro" />
+  <xacro:include filename="$(find roch_description)/urdf/common_properties.urdf.xacro"/> 
+  <xacro:include filename="$(find roch_description)/urdf/roch_gazebo.urdf.xacro"/>
+  <xacro:include filename="$(find roch_description)/urdf/roch_sensors.urdf.xacro"/>
+  <property name="M_PI" value="3.14159"/>
+
+  <!-- Base Size -->
+  <property name="base_x_size" value="0.353080" />
+  <property name="base_y_size" value="0.299330" />
+  <property name="base_z_size" value="0.150000" />
+  <!-- Wheel Mounting Positions -->
+  <xacro:property name="wheelbase" value="-0.095" />
+  <xacro:property name="track" value="0.236" />
+  <xacro:property name="wheel_vertical_offset" value="0.0248" />
+
+  <!-- Wheel Properties -->
+  <xacro:property name="wheel_length" value="0.014" />
+  <xacro:property name="wheel_radius" value="0.0475" />
+
+ <!---->
+ <xacro:macro name="roch">  
+
+    <!-- Base link is on the ground under the robot -->
+    <link name="base_footprint"/>
+    <gazebo reference="base_footprint">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <joint name="chassis_joint" type="fixed">
+      <origin xyz="0 0 ${wheel_radius-wheel_vertical_offset}" rpy="0 0 0" />
+      <parent link="base_footprint" />
+      <child link="base_link" />
+    </joint>
+    
+    <!-- Chassis link is the center of the robot's bottom plate -->
+    <link name="base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+	  <mesh filename="package://roch_description/meshes/chassis.dae"/>
+        </geometry>
+       <xacro:insert_block name="roch_dark_white" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 ${base_z_size*3/4}" rpy="0 0 0" />
+        <geometry>
+         <box size="0.35308 .29933 .155"/>  
+        </geometry>
+      </collision>
+      <inertial>
+        <!-- COM experimentally determined -->
+        <origin xyz="0.01 0 0"/>
+        <mass value="6.7" /><!-- 6.7 kg for standard pack -->
+        <!-- roch's inertia tensor is approximated by a cylinder with homogeneous mass distribution
+             More details: http://en.wikipedia.org/wiki/List_of_moment_of_inertia_tensors
+             m = 6.7 kg; h = 0.150 m; r = 0.180 m
+             ixx = 1/12 * m * (3 * r^2 + h^2)
+             iyy = 1/12 * m * (3 * r^2 + h^2)
+             izz = 1/2 * m * r^2 
+        <inertia ixx="0.0668325" ixy="0.0" ixz="0.0"
+                 iyy="0.0668325" iyz="0.0" 
+                 izz="0.10854" />
+          -->
+        <inertia ixx="0.0668325" ixy="0.0" ixz="0.0" iyy="0.0668325" iyz="0.0" izz="0.10854" />
+      </inertial>
+    </link>
+    <gazebo reference="base_link">
+    </gazebo>
+<!-- Xacro macros -->
+
+  <!-- roch wheel macros -->
+    <xacro:roch_wheel wheel_prefix="front_left">
+      <origin xyz="0 ${track/2} ${wheel_vertical_offset-0.0005}" rpy="0 0 0" />
+    </xacro:roch_wheel>
+    <xacro:roch_wheel wheel_prefix="front_right">
+      <origin xyz="0 ${-track/2} ${wheel_vertical_offset-0.0005}" rpy="0 0 0" />
+    </xacro:roch_wheel>
+   
+   <link name="front_wheel_link">
+    <collision>
+        <geometry>
+          <cylinder length="0.018" radius="0.0127"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>      
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+   </link>
+   <link name="rear_wheel_link">
+    <collision>
+        <geometry>
+          <cylinder length="0.018" radius="0.0127"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>      
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+   </link>
+<!--                 modify                           -->
+<!--              range_z: -0.007 ~ -0.008                              -->
+<!--                                            -->
+<!--                                            -->
+<!--                                            -->
+<!--                                            -->
+<!--                                            -->
+<!--                                            -->
+<!--                                            -->
+   <joint name="fornt_wheel_joint" type="fixed">
+      <origin xyz="0.13 0 -0.0084 " rpy="${-M_PI/2} 0 0" />
+      <parent link="base_link" />
+      <child link="front_wheel_link" />
+   </joint>
+   <joint name="rear_wheel_joint" type="fixed">
+      <origin xyz="-0.13 0 -0.008 " rpy="${-M_PI/2} 0 0" />
+      <parent link="base_link" />
+      <child link="rear_wheel_link" />
+   </joint>
+
+<!-- Roch sensors -->
+ <!-- IMU Link is the standard mounting position for the R1371T IMU.-->
+    <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
+    <link name="imu_link">
+      <inertial>
+        <mass value="0.001"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" 
+                 iyy="0.000001" iyz="0"
+                 izz="0.0001"/>
+      </inertial>
+    </link>
+    <joint name="imu_joint" type="fixed">
+      <origin xyz="$(optenv HUSKY_IMU_XYZ 0.145 0 0.0095)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
+      <parent link="base_link" />
+      <child link="imu_link" />
+      <axis xyz="0 1 0"/>
+    </joint>
+    <gazebo reference="imu_link">
+      <sensor type="imu" name="imu">
+      <always_on>true</always_on>
+      <update_rate>50</update_rate>
+      <visualize>false</visualize>
+        <imu>
+          <noise>
+            <type>gaussian</type>
+	          <rate>
+	            <mean>0.0</mean>
+	            <stddev>${0.0014*0.0014}</stddev> <!-- 0.25 x 0.25 (deg/s) -->
+	            <bias_mean>0.0</bias_mean>
+	            <bias_stddev>0.0</bias_stddev>
+	          </rate>
+		        <accel> <!-- not used in the plugin and real robot, hence using tutorial values -->
+			        <mean>0.0</mean>
+			        <stddev>1.7e-2</stddev>
+			        <bias_mean>0.1</bias_mean>
+			        <bias_stddev>0.001</bias_stddev>
+		        </accel>
+          </noise>
+	      </imu>
+      </sensor>  
+    </gazebo>
+
+    <xacro:roch_ultrasonic ultrasonic_prefix="front_left" parent="base_link">
+      <origin xyz="0.1631 0.06756 0.123" rpy="0 ${-M_PI/2} 0" />
+    </xacro:roch_ultrasonic>
+    <xacro:roch_ultrasonic ultrasonic_prefix="front_middle" parent="base_link">
+      <origin xyz="0.17654 0 0.123" rpy="0 ${-M_PI/2} 0" />
+    </xacro:roch_ultrasonic>
+    <xacro:roch_ultrasonic ultrasonic_prefix="front_right" parent="base_link">
+      <origin xyz="0.1631 -0.06756 0.123" rpy="0 ${-M_PI/2} 0" />
+    </xacro:roch_ultrasonic>
+
+    <xacro:roch_psd psd_prefix="front_left" parent="base_link">
+      <origin xyz="0.1631 0.06756 0.033" rpy="0 0 0" />
+    </xacro:roch_psd>
+    <xacro:roch_psd psd_prefix="front_middle" parent="base_link">
+      <origin xyz="0.17654 0 0.033" rpy="0 0 0" />
+    </xacro:roch_psd>
+    <xacro:roch_psd psd_prefix="front_right" parent="base_link">
+      <origin xyz="0.1631 -0.06756 0.033" rpy="0 0 0" />
+    </xacro:roch_psd>
+
+    <xacro:roch_cliff cliff_prefix="front_left" parent="base_link">
+      <origin xyz="0.12695 0.06874 0.0065" rpy="0 ${M_PI/2} 0" />
+    </xacro:roch_cliff>
+    <xacro:roch_cliff cliff_prefix="front_right" parent="base_link">
+      <origin xyz="0.12695 -0.06874 0.0065" rpy="0 ${M_PI/2} 0" />
+    </xacro:roch_cliff>
+
+ <!-- roch Gazebo simulation details -->
+  <roch_robot_gazebo/>
+ <!-- laser model 
+  <xacro:if value="$(arg laser_enabled)">
+
+      <joint name="base_laser_mount" type="fixed">
+        <origin xyz="0.001 0 0.1" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="base_laser" />
+      </joint>
+
+      <xacro:sick_lms100 prefix="base" />
+  </xacro:if>  -->
+  <!-- Husky kinect macros 
+   <xacro:if value="$(arg kinect_enabled)"> 
+      <joint name="kinect_frame_joint" type="fixed">
+        <origin xyz="$(optenv HUSKY_KINECT_XYZ 0.09 0 0.072)" rpy="$(optenv HUSKY_KINECT_RPY 0 0 0)" />
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+      </joint>
+
+      <xacro:kinect_camera prefix="camera"/>
+   </xacro:if> -->
+   
+  <!-- asus xtion model
+  <xacro:if value="$(arg asus_xtion_enabled)">
+     <sensor_asus_xtion_pro parent="base_link"/>
+  </xacro:if>   -->
+<!-- -->
+</xacro:macro>  
+  
+</robot>

@@ -1,0 +1,21 @@
+<launch>
+  <!--
+    Push the left frontal button labeled as 'LB' to activate cmd_vel publishing.
+    Move the left stick around to control the velocity.
+   -->
+  <!--  smooths inputs from cmd_vel_mux/input/teleop_raw to cmd_vel_mux/input/teleop -->
+  <include file="$(find roch_teleop)/launch/includes/velocity_smoother.launch.xml"/>
+
+  <node pkg="roch_teleop" type="roch_teleop_joy" name="roch_teleop_joystick">
+    <param name="scale_angular" value="1.5"/>
+    <param name="scale_linear" value="0.5"/>
+    <param name="axis_deadman" value="4"/>
+    <param name="axis_linear" value="1"/>
+    <param name="axis_angular" value="0"/>
+    <!-- <remap from="roch_teleop_joystick/cmd_vel" to="teleop_velocity_smoother/raw_cmd_vel"/> -->
+    <remap from="roch_teleop_joystick/cmd_vel" to="/roch_velocity_controller/cmd_vel"/>
+  </node>
+
+  <node pkg="joy" type="joy_node" name="joystick"/>
+
+</launch>

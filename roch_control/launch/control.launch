@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<launch>
+
+  <rosparam command="load" file="$(find roch_control)/config/control.yaml" />
+ <!-- load configuration -->
+  <rosparam command="load" file="$(find roch_control)/config/imu_sensor_controller.yaml" />
+
+ <!-- --><node name="base_controller_spawner" pkg="controller_manager" type="spawner"  args="roch_joint_publisher roch_velocity_controller roch_sensor_controller --shutdown-timeout 3"/> 
+
+
+ <!-- Enable breaker 1 for the kinect -->
+  <node pkg="create_node" type="kinect_breaker_enabler.py" name="kinect_breaker_enabler"/>
+
+  <!-- Load create and gyro calibration  -->
+  <node pkg="create_node" type="load_calib.py" name="create_load_calibration">
+    <remap from="cmd_vel" to="mobile_base/commands/velocity" />
+  </node> 
+
+  <!-- load odom_combined to odom
+  <node pkg="roch_bringup" type="odom_ekf.py" name="odom_ekf" output="screen">  
+    <remap from="input" to="/robot_pose_ekf/odom_combined"/>  
+    <remap from="output" to="ekf_odom"/>  
+  </node>  -->
+
+  <!-- The odometry estimator
+  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <remap from="imu_data" to="roch_sensor_controller/imu/data"/> 
+    <remap from="robot_pose_ekf/odom" to="odom_combined"/>
+    <remap from="odom" to="roch_velocity_controller/odom"/>
+    <param name="freq" value="10.0"/>
+    <param name="sensor_timeout" value="10.0"/>
+    <param name="publish_tf" value="true"/>
+    <param name="odom_used" value="true"/>
+    <param name="imu_used" value="true"/>
+    <param name="vo_used" value="false"/>
+    <param name="output_frame" value="odom"/>
+  </node> -->
+
+  <!-- The odometry estimator using robot_localization package -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <rosparam command="load" file="$(find roch_control)/config/localization.yaml" />
+    <param name="publish_tf" value="true"/>
+    <param name="output_frame" value="odom"/>
+    <remap from="/odometry/filtered" to="odom"/>
+  </node>
+
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>
+
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find roch_control)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="roch_velocity_controller/cmd_vel"/>
+  </node>
+
+</launch>

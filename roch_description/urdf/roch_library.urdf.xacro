@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+  The complete roch library of xacros for easy reference
+ -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- General -->
+  <xacro:include filename="$(find roch_description)/urdf/common_properties.urdf.xacro"/>
+  <xacro:include filename="$(find roch_description)/urdf/roch_properties.urdf.xacro"/>
+  <!-- Bases -->
+  <xacro:include filename="$(find roch_description)/urdf/roch.urdf.xacro" />
+  <!-- Stacks -->
+  <xacro:include filename="$(find roch_description)/urdf/stacks/standard/standard.urdf.xacro"/>
+  <!-- 3D Sensors -->
+  <xacro:include filename="$(find roch_description)/urdf/sensors/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find roch_description)/urdf/sensors/asus_xtion_pro.urdf.xacro"/>
+  <xacro:include filename="$(find roch_description)/urdf/sensors/asus_xtion_pro_offset.urdf.xacro"/>
+  <xacro:include filename="$(find roch_description)/urdf/sensors/kinect_camera.urdf.xacro"/>
+  <xacro:include filename="$(find roch_description)/urdf/sensors/ls_ls01c.urdf.xacro"/>
+</robot>

@@ -1,0 +1,12 @@
+<launch>
+  <!--  smooths inputs from cmd_vel_mux/input/teleop_raw to cmd_vel_mux/input/teleop -->
+  <include file="$(find roch_teleop)/launch/includes/velocity_smoother.launch.xml"/>
+
+  <!-- roch_teleop_key already has its own built in velocity smoother -->
+  <node pkg="roch_teleop" type="roch_teleop_key" name="roch_teleop_keyboard"  output="screen">
+    <param name="scale_linear" value="0.5" type="double"/>
+    <param name="scale_angular" value="1.5" type="double"/>
+ <!--   <remap from="roch_teleop_keyboard/cmd_vel" to="/roch_velocity_controller/cmd_vel"/> -->
+    <remap from="roch_teleop_keyboard/cmd_vel" to="/roch_velocity_controller/cmd_vel"/>
+  </node>
+</launch>

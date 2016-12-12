@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <name>roch_msgs</name>
+  <version>0.0.1</version>
+  <description>Messages, serivices and actions for SawYer roch</description>
+
+  <author email="wzhang@softrobtech.com">Carl</author>
+
+  <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
+
+  <license>BSD</license>
+
+ 
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>std_srvs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+
+  <run_depend>message_runtime</run_depend>
+  <run_depend>std_srvs</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+  <export>
+  </export>
+</package>

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="roch_sensors">
+
+	<xacro:macro name="roch_ultrasonic" params="ultrasonic_prefix parent *joint_pose">
+		<link name="ultrasonic_sensor_${ultrasonic_prefix}_link">
+			<inertial>         
+				<mass value="0.1" />
+				<origin xyz="0 0 0" />
+				<inertia  ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+			</inertial>
+		</link>
+
+		<joint name="ultrasonic_sensor_${ultrasonic_prefix}_joint" type="fixed">
+			<parent link="base_link"/>
+			<child link="ultrasonic_sensor_${ultrasonic_prefix}_link"/>
+			<xacro:insert_block name="joint_pose"/>
+		</joint>
+
+		<gazebo reference="ultrasonic_sensor_${ultrasonic_prefix}_link">
+	          <sensor type="sonar" name="ultrasonic_sensor_${ultrasonic_prefix}">
+	          <always_on>true</always_on>
+	          <update_rate>30</update_rate>
+	          <visualize>true</visualize>
+                  <sonar>
+                      <min>0</min>
+                      <max>0.8</max>
+                      <radius>0.261799</radius>
+     	            </sonar>
+	          </sensor>
+	        </gazebo>
+	</xacro:macro>
+
+	<xacro:macro name="roch_psd" params="psd_prefix parent *joint_pose">
+		<link name="psd_sensor_${psd_prefix}_link">
+			<inertial>         
+				<mass value="0.1" />
+				<origin xyz="0 0 0" />
+				<inertia  ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+			</inertial>
+		</link>
+
+		<joint name="psd_sensor_${psd_prefix}_joint" type="fixed">
+			<parent link="base_link"/>
+			<child link="psd_sensor_${psd_prefix}_link"/>
+			<xacro:insert_block name="joint_pose"/>
+		</joint>
+
+		<gazebo reference="psd_sensor_${psd_prefix}_link">
+	          <sensor type="ray" name="psd_sensor_${psd_prefix}">
+	            <always_on>true</always_on>
+	            <update_rate>50</update_rate>
+	            <visualize>true</visualize>
+	            <ray>
+	              <scan>
+	                <horizontal>
+	                  <samples>50</samples>
+	                  <resolution>1.0</resolution>
+	                  <min_angle>-0.0436</min_angle>  <!-- -2.5 degree -->
+	                  <max_angle>0.0436</max_angle> <!-- 2.5 degree -->
+	                </horizontal>
+	              </scan>
+	              <range>
+	                <min>0.10</min>
+	                <max>0.8</max>
+	                <resolution>1.0</resolution>
+	              </range>
+	            </ray>
+	          </sensor>
+	        </gazebo>
+	</xacro:macro>
+
+	<xacro:macro name="roch_cliff" params="cliff_prefix parent *joint_pose">
+		<link name="cliff_sensor_${cliff_prefix}_link">
+			<inertial>         
+				<mass value="0.1" />
+				<origin xyz="0 0 0" />
+				<inertia  ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+			</inertial>
+		</link>
+
+		<joint name="cliff_sensor_${cliff_prefix}_joint" type="fixed">
+			<parent link="base_link"/>
+			<child link="cliff_sensor_${cliff_prefix}_link"/>
+			<xacro:insert_block name="joint_pose"/>
+		</joint>
+
+		<gazebo reference="cliff_sensor_${cliff_prefix}_link">
+	          <sensor type="ray" name="cliff_sensor_${cliff_prefix}">
+	            <always_on>true</always_on>
+	            <update_rate>50</update_rate>
+	            <visualize>true</visualize>
+	            <ray>
+	              <scan>
+	                <horizontal>
+	                  <samples>50</samples>
+	                  <resolution>1.0</resolution>
+	                  <min_angle>-0.0436</min_angle>  <!-- -2.5 degree -->
+	                  <max_angle>0.0436</max_angle> <!-- 2.5 degree -->
+	                </horizontal>
+	              </scan>
+	              <range>
+	                <min>0.01</min>
+	                <max>0.15</max>
+	                <resolution>1.0</resolution>
+	              </range>
+	            </ray>
+	          </sensor>
+	        </gazebo>
+	</xacro:macro>
+</robot>
