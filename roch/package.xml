@@ -10,9 +10,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>roch_control</run_depend>
-  <run_depend>roch_description</run_depend>
-  <run_depend>roch_msgs</run_depend>
+  <run_depend>roch_bringup</run_depend>
   <run_depend>roch_navigation</run_depend> 
   <run_depend>roch_teleop</run_depend> 
   <run_depend>roch_follower</run_depend> 

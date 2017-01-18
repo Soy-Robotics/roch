@@ -1,0 +1,29 @@
+<!--
+  Collection of robot-centric definitions and nodes for the roch. 
+ -->
+<launch>
+  <arg name="base"/>
+  <arg name="stacks"/>
+  <arg name="3d_sensor"/>
+  <arg name="3d_sensor_enable"/>
+  <arg name="2d_laser"/>
+  <arg name="2d_laser_enable"/>
+  
+  <include file="$(find roch_bringup)/launch/includes/description.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="stacks" value="$(arg stacks)" />
+    <arg name="3d_sensor" value="$(arg 3d_sensor)" />
+    <arg name="3d_sensor_enable" value="$(arg 3d_sensor_enable)"/>
+    <arg name="2d_laser" value="$(arg 2d_laser)" />
+    <arg name="2d_laser_enable" value="$(arg 2d_laser_enable)" />
+  </include>
+
+  <!-- important generally, but specifically utilised by the current app manager -->  
+  <param name="robot/name" value="$(optenv ROBOT roch)"/>
+  <param name="robot/type" value="roch"/>
+  
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="5.0" />
+  </node>
+
+</launch>

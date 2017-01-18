@@ -1,0 +1,22 @@
+<!--
+  launch the ult/psd/cliff to pointcloud .
+  
+  Parameter pointcloud_radius gives the ult/psd/cliff pointcloud distance to base frame;
+  Parameter ult/psd/cliff_enable gives the ult/psd/cliff enable.
+  should be something like the robot radius plus plus costmap resolution plus an extra to
+  cope with robot inertia. This is a bit tricky parameter: if it's too low, costmap will
+  ignore this pointcloud (the robot footprint runs over the hit obstacle), but if it's too
+  big, hit obstacles will be mapped too far from the robot and the navigation around them
+  will probably fail.
+ -->
+<launch>
+  <node pkg="roch_sensorpc" type="roch_sensorpc_nodelet" name="roch_sensorpc_nodelet">
+    <param name="pointcloud_radius" value="0.25"/>
+    <param name="ult_enable"        value="true"/>
+    <param name="psd_enable"        value="true"/>
+    <param name="cliff_enable"      value="true"/>
+    <remap from="/pointcloud"   to="mobile_base/sensors/sensor_pointcloud"/>
+    <remap from="/core_sensors" to="mobile_base/sensors/core"/>    
+  </node>
+</launch>
+

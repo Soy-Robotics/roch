@@ -1,0 +1,8 @@
+#for jeston TK1 remove "laser_filters/ " if not, laser data will appear behind of roch
+#for pc if add "laser_filters/" error, remove this, otherwise add.
+scan_filter_chain:
+- name: range
+  type: LaserScanRangeFilter
+  params:
+    lower_threshold: 0.3
+    upper_threshold: .inf

@@ -1,0 +1,72 @@
+<launch>
+  <arg name="camera"      default="camera"/>
+  <arg name="publish_tf"  default="false"/>
+  <arg name="rgb"              default="rgb" />
+  <arg name="ir"               default="ir" />
+  <arg name="depth_registered" default="depth_registered" />
+  <arg name="projector"        default="projector" />
+  <!-- Factory-calibrated depth registration -->
+  <arg name="depth_registration"              default="true"/>
+  <arg     if="$(arg depth_registration)" name="depth" value="depth_registered" />
+  <arg unless="$(arg depth_registration)" name="depth" value="depth" />
+  <!-- Disable respawn topics by default -->
+  <arg name="respawn" default="false" />
+
+  <!-- Processing Modules -->
+  <arg name="launch_camera"                   default="true"/>                                      
+  <arg name="rgb_processing"                  default="true"/>                                      
+  <arg name="ir_processing"                   default="true"/>                                      
+  <arg name="depth_processing"                default="true"/>                                      
+  <arg name="depth_registered_processing"     default="true"/>                                      
+  <arg name="disparity_processing"            default="true"/>                                      
+  <arg name="disparity_registered_processing" default="true"/>                                      
+  <arg name="scan_processing"                 default="true"/> 
+  <arg name="hw_registered_processing"        default="false" />
+  <arg name="sw_registered_processing"        default="true" />
+
+  <arg name="depth_fps"         default="30" />
+  <arg name="color_fps"         default="30" />
+  <param name="$(arg camera)/driver/depth_fps"         type="int"  value="$(arg depth_fps)" />
+  <param name="$(arg camera)/driver/color_fps"         type="int"  value="$(arg color_fps)" />
+                                     
+                                                                                                    
+  <!-- Worker threads for the nodelet manager -->                                                   
+  <arg name="num_worker_threads" default="4" />
+
+  <!-- Start nodelet manager in provided namespace -->
+  <group ns="$(arg camera)" if="$(arg launch_camera)">
+    <arg name="manager" value="$(arg camera)_nodelet_manager" />
+    <arg name="debug" default="false" /> <!-- Run manager in GDB? -->
+    <include file="$(find rgbd_launch)/launch/includes/manager.launch.xml">
+      <arg name="name"                value="$(arg manager)" />
+      <arg name="debug"               value="$(arg debug)" />
+      <arg name="num_worker_threads"  value="$(arg num_worker_threads)" />
+    </include>
+    <include file="$(find realsense_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="manager"      value="$(arg manager)" />
+      <arg name="camera"       value="$(arg camera)" />
+      <arg name="camera_type"  value="R200" />
+    </include>
+    
+    
+    <!-- Load standard constellation of processing nodelets -->
+    <include file="$(find rgbd_launch)/launch/includes/processing.launch.xml">
+      <arg name="manager"                         value="$(arg manager)" />
+      <arg name="rgb"                             value="$(arg rgb)" />
+      <arg name="ir"                              value="$(arg ir)" />
+      <arg name="depth"                           value="$(arg depth)" />
+      <arg name="depth_registered"                value="$(arg depth_registered)" />
+      <arg name="projector"                       value="$(arg projector)" />
+      <arg name="respawn"                         value="$(arg respawn)" />
+      <arg name="rgb_processing"                  value="$(arg rgb_processing)" />
+      <arg name="ir_processing"                   value="$(arg ir_processing)" />
+      <arg name="depth_processing"                value="$(arg depth_processing)" />
+      <arg name="depth_registered_processing"     value="$(arg depth_registered_processing)" />
+      <arg name="disparity_processing"            value="$(arg disparity_processing)" />
+      <arg name="disparity_registered_processing" value="$(arg disparity_registered_processing)" />
+      <arg name="hw_registered_processing"        value="$(arg hw_registered_processing)" />
+      <arg name="sw_registered_processing"        value="$(arg sw_registered_processing)" />
+    </include>
+
+  </group>                                                                               
+</launch>

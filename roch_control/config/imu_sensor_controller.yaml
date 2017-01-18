@@ -1,4 +1,0 @@
-
-roch_sensor_controller:
-  type: imu_sensor_controller/ImuSensorController
-  publish_rate: 50

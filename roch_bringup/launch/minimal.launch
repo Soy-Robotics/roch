@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2014, SawYer Robotics
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of SawYer Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <!-- Roch Configure -->
+  <arg name="base"		    default="$(env ROCH_BASE)"			doc="mobile base type [roch]"/>
+  <arg name="stacks"		default="$(env ROCH_STACKS)"			doc="stack type displayed in visualisation/simulation [standard]"/>
+  <arg name="3d_sensor"		default="$(env ROCH_3D_SENSOR)"			doc="3d sensor types [kinect, asus_xtion_pro, r200]"/>
+  <arg name="3d_sensor_enable"	default="$(env ROCH_3D_SENSOR_ENABLE)"		doc="3d sensor enable"/>
+  <arg name="2d_laser"		default="$(env ROCH_LASER)"			doc="2d laser types [ls01c, rplidar]"/>
+  <arg name="2d_laser_enable"	default="$(env ROCH_LASER_ENABLE)"		doc="2d laser enable"/>
+  <arg name="serialport"	default="$(env ROCH_SERIAL_PORT)"		doc="used by create to configure the port it is connected on [/dev/ttyUSB0, /dev/ttyS0]"/>
+  <arg name="simulation"        default="$(env ROCH_SIMULATION)"  		doc="set flags to indicate this turtle is run in simulation mode."/>
+  <arg name="robot_name"        default="$(env ROCH_NAME)"       		doc="used as a unique identifier and occasionally to preconfigure root namespaces, gateway/zeroconf ids etc."/>
+  <arg name="robot_type"        default="$(env ROCH_TYPE)"       		doc="just in case you are considering a 'variant' and want to make use of this."/>
+
+    <param name ="/use_sim_time" value="$(arg simulation)"/>
+
+    <!-- Load robot model -->
+  <include file="$(find roch_bringup)/launch/includes/robot.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="stacks" value="$(arg stacks)" />
+    <arg name="3d_sensor" value="$(arg 3d_sensor)" />
+    <arg name="3d_sensor_enable" value="$(arg 3d_sensor_enable)"/>
+    <arg name="2d_laser" value="$(arg 2d_laser)" />
+    <arg name="2d_laser_enable" value="$(arg 2d_laser_enable)" />
+  </include>
+
+    <!-- Load robot base-->
+    <include file="$(find roch_bringup)/launch/includes/mobile_base.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="serialport" value="$(arg serialport)" />
+    </include>
+
+</launch>

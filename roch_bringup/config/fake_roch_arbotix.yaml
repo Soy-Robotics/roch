@@ -1,0 +1,12 @@
+port: /dev/ttyUSB0
+baud: 115200
+rate: 20
+sync_write: True
+sync_read: True
+read_rate: 20
+write_rate: 20
+
+controllers: {
+   #  Pololu motors: 90 cpr = 0.29845105m travel = 19300 ticks per meter (empirical: 4100)
+   base_controller: {type: diff_controller, base_frame_id: base_footprint, base_width: 0.29933, ticks_meter: 19300, Kp: 0.1, Kd: 0.01, Ki: 0.05, Ko: 50, accel_limit: 1.0 }
+}

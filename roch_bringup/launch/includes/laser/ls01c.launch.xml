@@ -1,0 +1,14 @@
+<launch>
+  <arg name="laserPort_"  default="$(env LS01C_SERIAL_PORT)"/>
+  <arg name="2d_laser" default="$(env ROCH_LASER)"/>
+  <arg name="lsrate"	default="50.0"/>
+  <node pkg="ls01c" type="LS01C_node" name="LS01C_node">
+    <param name="laserPort_" value="$(arg laserPort_)"/>
+	<param name="rate"       value="$(arg lsrate)"/>
+  </node>
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain"
+      name="laser_filter">
+    <rosparam command="load" file="$(find roch_bringup)/param/laser/$(arg 2d_laser)/laser.yaml" />
+    <remap from="scan" to="scan" />
+  </node>
+</launch>
