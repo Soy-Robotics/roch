@@ -1,6 +1,9 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change log for package roch_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.6 (2017-01-17)
+------------------
+
 0.0.4 (2017-01-17)
 -----------------
 * Modify all launch files for adjust structres.

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>roch_control</name>
-  <version>0.2.7</version>
+  <version>1.0.6</version>
   <description>SawYer roch controller configurations</description>
 
   <author email="wzhang@softrobtech.com">Carl</author>
