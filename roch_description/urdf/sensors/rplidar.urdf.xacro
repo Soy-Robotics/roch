@@ -27,14 +27,14 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ls_ls01c">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="rplidar">
 
   <xacro:property name="laser_x" value="0.08" />
   <xacro:property name="laser_y" value="0.08" />
   <xacro:property name="laser_z" value="0.05526" />
   <xacro:property name="laser_mass" value=".1" />
 
-  <xacro:macro name="ls_ls01c" params="parent:=base_link">
+  <xacro:macro name="rplidar" params="parent:=base_link">
 
     <link name="base_laser_link">
       <inertial>
@@ -47,7 +47,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://roch_description/meshes/sensors/ls_01c.stl" />
+          <mesh filename="package://roch_description/meshes/sensors/rplidar.stl" />
         </geometry>
         <xacro:insert_block name="roch_dark_grey" />
       </visual>
@@ -67,7 +67,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <link name="base_laser"/>
     <joint name="base_laser_joint" type="fixed">
-      <origin xyz="0 0 0.04076" rpy=" ${M_PI} 0 0" />
+      <origin xyz="0 0 0.04076" rpy=" 0 ${M_PI} 0" />
       <parent link="base_laser_link" />
       <child link="base_laser" />
     </joint>

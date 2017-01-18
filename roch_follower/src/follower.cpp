@@ -168,6 +168,7 @@ private:
     //Iterate through all the points in the region and find the average of the position
     const float* depth_row = reinterpret_cast<const float*>(&depth_msg->data[0]);
     int row_step = depth_msg->step / sizeof(float);
+	int counter=0;
     for (int v = 0; v < (int)depth_msg->height; ++v, depth_row += row_step)
     {
      for (int u = 0; u < (int)depth_msg->width; ++u)
@@ -186,7 +187,6 @@ private:
        }
      }
     }
-
     //If there are points, find the centroid and calculate the command goal.
     //If there are no points, simply publish a stop goal.
     if (n>4000)

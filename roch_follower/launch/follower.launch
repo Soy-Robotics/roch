@@ -1,8 +1,9 @@
 <!--
-  The turtlebot people (or whatever) follower nodelet.
+  The follower people (or whatever) follower nodelet.
  -->
 <launch>
   <arg name="simulation" default="false"/>
+  <arg name="3d_sensor_nav_enabled" default="$(env ROCH_3D_SENSOR_NAV_ENABLE)"/>
   <group unless="$(arg simulation)"> <!-- Real robot -->
     <include file="$(find roch_follower)/launch/includes/velocity_smoother.launch.xml">
       <arg name="nodelet_manager"  value="/mobile_base_nodelet_manager"/>
@@ -16,7 +17,8 @@
       <arg name="depth_registration"              value="false"/>
       <arg name="disparity_processing"            value="false"/>
       <arg name="disparity_registered_processing" value="false"/>
-      <arg name="scan_processing"                 value="false"/>
+      <arg name="3d_sensor_nav_enabled"           value="false"/>
+	  <arg name="2d_laser_enabled"				  value="false"/>
     </include>
   </group>
   <group if="$(arg simulation)">
@@ -42,6 +44,7 @@
         args="load roch_follower/RochFollower camera/camera_nodelet_manager">
     <remap from="roch_follower/cmd_vel" to="follower_velocity_smoother/raw_cmd_vel"/>
     <remap from="depth/points" to="camera/depth/points"/>
+    <remap from="depth/image_rect" to="/camera/depth/image_rect"/>
     <param name="enabled" value="true" />
     <param name="x_scale" value="7.0" />
     <param name="z_scale" value="2.0" />
@@ -55,3 +58,4 @@
   <!-- Launch the script which will toggle roch following on and off based on a joystick button. default: on -->
   <node name="switch" pkg="roch_follower" type="switch.py"/>
 </launch>
+

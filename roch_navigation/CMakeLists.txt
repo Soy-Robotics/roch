@@ -16,8 +16,6 @@ include_directories(${catkin_INCLUDE_DIRS})
 roslaunch_add_file_check(launch)
 catkin_add_env_hooks(25.roch-navigation
    SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
-catkin_add_env_hooks(50.roch_navigation
-   SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
 install(
   DIRECTORY param launch maps
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}

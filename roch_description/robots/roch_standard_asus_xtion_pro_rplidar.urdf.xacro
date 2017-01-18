@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+    - Base      : roch
+    - Stacks    : standard
+    - 3d Sensor : asus_xtion_pro
+    - 2d Laser  : Rplidar A1
+-->    
+<robot name="roch" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find roch_description)/urdf/roch_library.urdf.xacro" />
+  
+  <roch/>
+  <stack_standard                 parent="base_link"/>
+  <rplidar                        parent="base_link"/>
+  <sensor_asus_xtion_pro          parent="base_link"/>
+</robot>

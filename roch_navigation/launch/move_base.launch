@@ -2,14 +2,14 @@
     ROS navigation stack with velocity smoother and safety (reactive) controller
 -->
 <launch>
-  <arg name="3d_sensor" 		      default="$(env ROCH_3D_SENSOR)"/>  <!-- kinect, asus_xtion_pro -->
-  <arg name="2d_laser"  		      default="$(env ROCH_LASER)"/>  <!-- ls01c -->
-  <!-- if add 2d laser or not-->
-  <arg name="2d_laser_enabled"		      default="$(env ROCH_LASER_ENABLE)"/>
-  <!-- if add 3d laser or not-->
-  <arg name="3d_sensor_enabled"		      default="$(env ROCH_3D_SENSOR_ENABLE)"/>
+  <arg name="3d_sensor" 		      default="$(env ROCH_3D_SENSOR)"/>  <!-- kinect, asus_xtion_pro, r200 -->
+  <arg name="2d_laser"  		      default="$(env ROCH_LASER)"/>  <!-- ls01c, rplidar -->
+  <arg name="2d_laser_enabled"		      default="$(env ROCH_LASER_ENABLE)"/> <!-- if add 2d laser or not -->
+  <arg name="3d_sensor_enabled"		      default="$(env ROCH_3D_SENSOR_ENABLE)"/> <!-- if add 3d sensor or not -->
+  <arg name="3d_sensor_nav_enabled"		default="$(env ROCH_3D_SENSOR_NAV_ENABLE)"/> <!-- if add 3d sensor for navigation -->
 
   <include file="$(find roch_navigation)/launch/includes/velocity_smoother.launch.xml"/>  
+  <include file="$(find roch_navigation)/launch/includes/safety_controller.launch.xml"/>  
   
   <arg name="odom_frame_id"   default="odom"/>
   <arg name="base_frame_id"   default="base_footprint"/>
@@ -19,51 +19,56 @@
   <arg name="lidar_topic" default="scan_filtered" />
 
   <group if="$(arg 3d_sensor_enabled)">
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-      <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_costmap_common_params.yaml" command="load" ns="global_costmap" />
-      <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_costmap_common_params.yaml" command="load" ns="local_costmap" />   
-      <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_local_costmap_params.yaml" command="load" />   
-      <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_global_costmap_params.yaml" command="load" />
-      <rosparam file="$(find roch_navigation)/param/dwa_local_planner_params.yaml" command="load" />
-      <rosparam file="$(find roch_navigation)/param/move_base_params.yaml" command="load" />
-      <rosparam file="$(find roch_navigation)/param/global_planner_params.yaml" command="load" />
-      <rosparam file="$(find roch_navigation)/param/navfn_global_planner_params.yaml" command="load" />
+    <group if="$(arg 3d_sensor_nav_enabled)">
+      <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_costmap_common_params.yaml" command="load" ns="local_costmap" />   
+        <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_local_costmap_params.yaml" command="load" />   
+        <rosparam file="$(find roch_navigation)/param/$(arg 3d_sensor)_global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/dwa_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/move_base_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/global_planner_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/navfn_global_planner_params.yaml" command="load" />
     
-      <!-- reset frame_id parameters using user input data -->
-      <param name="global_costmap/global_frame" value="$(arg global_frame_id)"/>
-      <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
-      <param name="local_costmap/global_frame" value="$(arg odom_frame_id)"/>
-      <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
-      <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
+        <!-- reset frame_id parameters using user input data -->
+        <param name="global_costmap/global_frame" value="$(arg global_frame_id)"/>
+        <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+        <param name="local_costmap/global_frame" value="$(arg odom_frame_id)"/>
+        <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+        <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
 
-      <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
-      <remap from="odom" to="$(arg odom_topic)"/>
-      <remap from="scan" to="$(arg laser_topic)"/>
-    </node>
+        <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
+        <remap from="odom" to="$(arg odom_topic)"/>
+        <remap from="scan" to="$(arg laser_topic)"/>
+      </node>
+	</group>
   </group>
   <group if="$(arg 2d_laser_enabled)">
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-      <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_costmap_common_params.yaml" command="load" ns="global_costmap" />
-      <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_costmap_common_params.yaml" command="load" ns="local_costmap" />   
-      <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_local_costmap_params.yaml" command="load" />   
-      <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_global_costmap_params.yaml" command="load" />
-      <!-- lidar add dwa will get error which will always rotate -->
-<!--      <rosparam file="$(find roch_navigation)/param/dwa_local_planner_params.yaml" command="load" />-->
-      <rosparam file="$(find roch_navigation)/param/base_local_planner_params.yaml" command="load" />
-      <rosparam file="$(find roch_navigation)/param/move_base_params.yaml" command="load" />
-      <rosparam file="$(find roch_navigation)/param/global_planner_params.yaml" command="load" />
-      <rosparam file="$(find roch_navigation)/param/navfn_global_planner_params.yaml" command="load" />
-    
-      <!-- reset frame_id parameters using user input data -->
-      <param name="global_costmap/global_frame" value="$(arg global_frame_id)"/>
-      <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
-      <param name="local_costmap/global_frame" value="$(arg odom_frame_id)"/>
-      <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
-      <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
+    <group unless="$(arg 3d_sensor_nav_enabled)">
+      <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_costmap_common_params.yaml" command="load" ns="local_costmap" />   
+        <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_local_costmap_params.yaml" command="load" />   
+        <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_global_costmap_params.yaml" command="load" />
+        <!-- lidar add dwa will get error which will always rotate -->
+<!--        <rosparam file="$(find roch_navigation)/param/dwa_local_planner_params.yaml" command="load" />-->
+        <rosparam file="$(find roch_navigation)/param/base_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/move_base_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/global_planner_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/navfn_global_planner_params.yaml" command="load" />
+     
+        <!-- reset frame_id parameters using user input data -->
+        <param name="global_costmap/global_frame" value="$(arg global_frame_id)"/>
+        <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+        <param name="local_costmap/global_frame" value="$(arg odom_frame_id)"/>
+        <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+        <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
 
-      <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
-      <remap from="odom" to="$(arg odom_topic)"/>
-      <remap from="scan" to="$(arg lidar_topic)"/>
-    </node>
+        <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
+        <remap from="odom" to="$(arg odom_topic)"/>
+        <remap from="scan" to="$(arg lidar_topic)"/>
+      </node>
+	</group>
   </group>
+
 </launch>

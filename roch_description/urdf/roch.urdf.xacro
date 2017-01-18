@@ -110,9 +110,9 @@
                  izz="0.001" />
       </inertial>
    </link>
-<!--                 modify                           -->
-<!--              range_z: -0.007 ~ -0.008                              -->
-<!--                                            -->
+<!--                 modify                     -->
+<!--              range_z: -0.007 ~ -0.008      -->
+<!--        if not modify in gazebo will shack  -->
 <!--                                            -->
 <!--                                            -->
 <!--                                            -->

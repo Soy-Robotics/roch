@@ -22,16 +22,29 @@
      Note: REP needs to be updated with the information below 
      (currently in development and awaiting feedback)
    --> 
-	<property name="asus_xtion_px" value="-0.145" />
-	<property name="asus_xtion_py" value="-0.025" /> 
-	<property name="asus_xtion_pz" value="0.721" />
-	<property name="asus_xtion_or" value="0" />
-	<property name="asus_xtion_op" value="0" />
-	<property name="asus_xtion_oy" value="0" />
-	<property name="kinect_px" value="-0.145" />
-	<property name="kinect_py" value="-0.025" /> 
-	<property name="kinect_pz" value="0.721" />
-	<property name="kinect_or" value="0" />
-	<property name="kinect_op" value="0" />
-	<property name="kinect_oy" value="0" />
+
+<!-- asus xtion param -->
+  <property name="asus_xtion_px" value="-0.145" />
+  <property name="asus_xtion_py" value="-0.025" /> 
+  <property name="asus_xtion_pz" value="0.721" />
+  <property name="asus_xtion_or" value="0" />
+  <property name="asus_xtion_op" value="0" />
+  <property name="asus_xtion_oy" value="0" />
+
+<!-- kinect param -->
+  <property name="kinect_px" value="-0.145" />
+  <property name="kinect_py" value="-0.025" /> 
+  <property name="kinect_pz" value="0.721" />
+  <property name="kinect_or" value="0" />
+  <property name="kinect_op" value="0" />
+  <property name="kinect_oy" value="0" />
+
+<!-- Intel R200 param -->
+  <property name="r200_px" value="-0.135" />
+  <property name="r200_py" value="-0.065" />
+  <property name="r200_pz" value="0.7" />
+  <property name="r200_or" value="0" />
+  <property name="r200_op" value="0" />
+  <property name="r200_oy" value="0" />
+
 </robot>
