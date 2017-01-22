@@ -1,6 +1,10 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.7 (2017-01-17)
+------------------
+* Fixed bugs which will cant not find roch_safety_controller.
+
 1.0.6 (2017-01-17)
 ------------------
 

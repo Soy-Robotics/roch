@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>roch_bringup</name>
-  <version>1.0.6</version>
+  <version>1.0.7</version>
   <description>SawYer roch installation and integration package</description>
 
   <author email="wzhang@softrobtech.com">Carl</author>
@@ -24,7 +24,7 @@
   <run_depend>roch_base</run_depend>
   <run_depend>roch_control</run_depend>
   <run_depend>roch_description</run_depend>
-  <run_depend>roch_safty_controller</run_depend>
+  <run_depend>roch_safety_controller</run_depend>
   <run_depend>roch_sensorpc</run_depend>
   <run_depend>imu_filter_madgwick</run_depend>
   <run_depend>imu_transformer</run_depend>
