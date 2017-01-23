@@ -1,6 +1,6 @@
 <package>
   <name>roch_follower</name>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
   <description>
        Follower for the roch. Follows humans and robots around by following the centroid of a box points in front of the roch.
   </description>

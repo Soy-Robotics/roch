@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
   <!--
     Push the left frontal button labeled as 'LB' to activate cmd_vel publishing.

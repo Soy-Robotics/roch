@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>roch_bringup</name>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
   <description>SawYer roch installation and integration package</description>
 
   <author email="wzhang@softrobtech.com">Carl</author>

@@ -1,6 +1,10 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.8 (2017-01-23)
+------------------
+* Changes permissions of python files.
+
 1.0.7 (2017-01-17)
 ------------------
 * Fixed bugs which will cant not find roch_safety_controller.
