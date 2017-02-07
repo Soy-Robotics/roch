@@ -1,6 +1,10 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change log for package roch_teleop
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.9 (2017-02-07)
+------------------
+* Add run depend yocs_cmd_vel_mux.
+
 1.0.8 (2017-01-23)
 ------------------
 * Changes permissions of python files.

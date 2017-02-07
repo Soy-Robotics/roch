@@ -1,6 +1,13 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change log for package roch_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.9 (2017-02-07)
+------------------
+* Add run depend yocs_cmd_vel_mux.
+* Add rplidar supported files with amcl and gmapping.
+* Add rplidar supported navigation param files.
+* Remove some files not used.
+
 1.0.8 (2017-01-23)
 ------------------
 * Remove some not uesd maps.

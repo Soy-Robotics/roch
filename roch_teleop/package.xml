@@ -1,6 +1,6 @@
 <package>
   <name>roch_teleop</name>
-   <version>1.0.8</version>
+   <version>1.0.9</version>
   <description>SawYer roch controller configurations</description>
 
   <author email="wzhang@softrobtech.com">Carl</author>
@@ -23,11 +23,12 @@
   <run_depend>joy</run_depend>
 
   <build_depend>roslaunch</build_depend>
- <run_depend>interactive_marker_twist_server</run_depend>
+  <run_depend>interactive_marker_twist_server</run_depend>
   <run_depend>diff_drive_controller</run_depend>
   <run_depend>joint_state_controller</run_depend>
   <run_depend>joint_trajectory_controller</run_depend>
- <run_depend>robot_localization</run_depend>
+  <run_depend>robot_localization</run_depend>
+  <run_depend>yocs_cmd_vel_mux</run_depend>
   <run_depend>rostopic</run_depend>
   <run_depend>controller_manager</run_depend>
   <run_depend>teleop_twist_joy</run_depend>
