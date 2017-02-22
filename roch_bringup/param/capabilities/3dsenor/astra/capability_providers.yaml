@@ -1,0 +1,3 @@
+# default capability providers for the Orbbec Astra
+defaults:
+  'std_capabilities/RGBDSensor': 'roch_capabilities/astra_rgbd_sensor'

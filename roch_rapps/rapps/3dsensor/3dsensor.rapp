@@ -1,0 +1,6 @@
+display:   3D Sensor
+description: Image information with 3D sensor on Roch.
+compatibility: rocon:/roch
+launch: 3dsensor.launch
+public_interface: 3dsensor.interface
+icon: 3dsensor_icon.png

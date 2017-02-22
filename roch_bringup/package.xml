@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>roch_bringup</name>
-  <version>1.0.9</version>
+  <version>1.0.10</version>
   <description>SawYer roch installation and integration package</description>
 
   <author email="wzhang@softrobtech.com">Carl</author>
@@ -20,12 +20,16 @@
   <build_depend>rospy</build_depend>
 
   <run_depend>realsense_camera</run_depend>
+  <run_depend>rocon_bubble_icons</run_depend>
   <run_depend>rplidar_ros</run_depend>
   <run_depend>roch_base</run_depend>
   <run_depend>roch_control</run_depend>
   <run_depend>roch_description</run_depend>
   <run_depend>roch_safety_controller</run_depend>
   <run_depend>roch_sensorpc</run_depend>
+  <run_depend>roch_capabilities</run_depend>
+  <run_depend>roch_rapps</run_depend>
+  <run_depend>roch_viz</run_depend>
   <run_depend>imu_filter_madgwick</run_depend>
   <run_depend>imu_transformer</run_depend>
   <run_depend>microstrain_3dmgx2_imu</run_depend>
@@ -35,12 +39,23 @@
   <run_depend>robot_localization</run_depend>
   <run_depend>openni2_launch</run_depend>
   <run_depend>freenect_launch</run_depend>
+  <run_depend>astra_launch</run_depend>
   <run_depend>robot_upstart</run_depend>
   <run_depend>tf</run_depend>
   <run_depend>tf2_ros</run_depend>
   <run_depend>ur_driver</run_depend>
   <run_depend>rospy</run_depend>
   <run_depend>depthimage_to_laserscan</run_depend>
+  <run_depend>zeroconf_avahi</run_depend>
+  <run_depend>rocon_app_manager</run_depend>
+  <run_depend>diagnostic_aggregator</run_depend>
+  <run_depend>rocon_interaction_msgs</run_depend>
+  <run_depend>rocon_app_manager_msgs</run_depend> 
+  <run_depend>laser_filters</run_depend>
+  <run_depend>rgbd_launch</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>diagnostic_aggregator</run_depend>
 
   <export>
   </export>

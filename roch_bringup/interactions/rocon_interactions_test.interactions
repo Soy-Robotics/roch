@@ -1,0 +1,28 @@
+##################################################
+# Test for roch interactions
+##################################################
+
+interactions:
+    - name: Rviz Markers
+      group: PC
+      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+      command: rviz/rviz -d $(find rocon_interactions)/rviz/markers.rviz
+      description: Rviz with a view exactly configured for the rocon_interactions tutorial.
+      max: -1
+      icon:
+        resource_name: rocon_bubble_icons/rviz.png
+
+    - name: Rocon_interactios Listener
+      group: 'Web Apps'
+      command: web_app(http://__WEBSERVER_ADDRESS__/rocon_tools/js/current/listener.html)
+      compatibility: rocon:/*/*/hydro|indigo/chrome|firefox
+      description: Rocon Interactions simple listener using rosjs in a web app.
+      icon:
+        resource_name: roch_rapps/2dlaser.png
+      parameters: 
+        rosbridge_address: __ROSBRIDGE_ADDRESS__
+        rosbridge_port: __ROSBRIDGE_PORT__
+      remappings:
+        - remap_from: /chatter
+          remap_to: /babbler
+

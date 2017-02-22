@@ -6,11 +6,9 @@
     <remap from="disable" to="disable"/>
     <remap from="reset" to="reset"/>
     <remap from="cmd_vel" to="cmd_vel"/>
-    <remap from="events/bumper" to="events/bumper"/>
     <remap from="events/cliff" to="events/cliff"/>
     <remap from="events/ult" to="events/ult"/>
     <remap from="events/psd" to="events/psd"/>
-    <remap from="events/wheel_drop" to="events/wheel_drop"/>
   </node>
 </launch>
 

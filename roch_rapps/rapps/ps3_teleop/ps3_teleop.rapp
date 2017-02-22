@@ -1,0 +1,6 @@
+display: PS3 Control
+description: Control Roch with PlayStation 3 joystick.
+compatibility: rocon:/roch
+launch: ps3_teleop.launch
+public_interface: ps3_teleop.interface
+icon: ps3_teleop_icon.png
