@@ -1,0 +1,144 @@
+#########################################################################
+#  .-----------------------------------------------------------------.  #
+# /  .-.                                                         .-.  \ #
+#|  /   \                                                       /   \  |#
+#| |\_.  |              Pairings Interactions                  |    /| |#
+#|\|  | /|                                                     |\  | |/|#
+#| `---' |                                                     | `---' |#
+#|       |                                                     |       |# 
+#|       |-----------------------------------------------------|       |#
+#\       |                                                     |       /#
+# \     /                                                       \     / #
+#  `---'                                                         `---'  #
+#########################################################################
+pairings:
+    - name: Keyboard Teleop 
+      group: 'PC Pairing'
+      rapp: roch_rapps/keyboard_teleop
+
+    - name: Talker
+      group: Bundled
+      rapp: rocon_apps/talker
+      requires_interaction: Listener
+      remappings:
+          - remap_from: chatter
+            remap_to: /conversation/chatter
+      parameters:
+          - key: message
+            value: "gday dude"
+
+    - name: Qt Joystick Teleop
+      group: 'PC Pairing'
+      rapp: rocon_apps/video_teleop
+      remappings:
+        - remap_from: cmd_vel
+          remap_to: /teleop/cmd_vel
+        - remap_from: compressed_image
+          remap_to: /teleop/compressed_image
+#      parameters:
+#          maximum_linear_velocity: __maximum_linear_velocity__
+#          maximum_angular_velocity: __maximum_angular_velocity__
+
+#    - name: Listener
+#      group: 'PC Pairing'
+#      rapp: rocon_apps/talker
+#      description: A pyqt listener for testing pairing.
+#      remappings:
+#        - remap_from: chatter
+#          remap_to: /conversation/chatter
+#      parameters:
+#          - key: message
+#            value: "gday dude"
+
+#    - name: Chirp 
+#      group: 'PC Pairing'
+#      rapp: rocon_apps/chirp
+#      description: A strange noise appears 
+
+
+    - name: Follower 
+      group: 'PC Pairing'
+      rapp: roch_rapps/follower
+      description: Take the Roch for a stroll. Roch will follow whatever is in front of it.
+
+    - name: PS3 Teleop
+      group: 'PC Pairing'
+      rapp: roch_rapps/ps3_teleop
+      description: Control the Roch with a PlayStation 3 Joystick.
+
+    - name: Navigation
+      group: 'PC Pairing'
+      rapp: roch_rapps/map_nav
+      description: Qt Map Navigation
+
+    - name: Make A Map
+      group: 'PC Pairing'
+      rapp: rocon_apps/make_a_map      
+      description: Qt Make A Map
+
+    - name: 3D Sensing 
+      group: 'PC Pairing'
+      rapp: roch_rapps/3dsensor
+      description: Qt 3D Sensor viewing
+
+    - name: 2D Laser Sensing 
+      group: 'PC Pairing'
+      rapp: roch_rapps/2dlaser
+      description: Qt 2D Laser viewing
+
+##########################
+#     Android Pairing    #
+##########################
+
+#    - name: Chirp
+#      group: 'Android Pairing'
+#      rapp: rocon_apps/chirp
+#      description: A strange noise appears
+
+    - name: Map Navigation
+      group: 'Android Pairing'
+      rapp: roch_rapps/map_nav #com.github.rosjava.android_apps.map_nav.indigo.MainActivity
+      description: Android navigation of a known map 
+      remappings:
+        - remap_from: cmd_vel
+          remap_to: /teleop/cmd_vel
+        - remap_from: compressed_image
+          remap_to: /teleop/compressed_image
+
+
+    - name: Make A Map
+      group: 'Android Pairing'
+      rapp: rocon_apps/make_a_map #com.github.rosjava.android_apps.make_a_map.indigo.MainActivity
+      description: Make a map by driving a Roch from an Android device.
+      remappings:
+        - remap_from: cmd_vel
+          remap_to: /teleop/cmd_vel
+        - remap_from: compressed_image
+          remap_to: /teleop/compressed_image
+
+
+    - name: Follower
+      group: 'Android Pairing'
+      rapp: roch_rapps/follower #com.github.roch.roch_android.follower.indigo.FollowerActivity
+      description: Take the Roch for a stroll. Roch will follow whatever is in front of it.
+
+#    - name: Listener
+#      group: 'Android Pairing'
+#      rapp: rocon_apps/talker #com.github.rosjava.android_remocons.listener.indigo.Listener
+#      description: A Android listener for testing pairing.
+#      remappings:
+#        - remap_from: chatter
+#          remap_to: /conversation/chatter
+
+    - name: Teleop
+      group: 'Android Pairing'
+      rapp: rocon_apps/video_teleop #com.github.rosjava.android_apps.teleop.indigo.MainActivity
+      description: Teleop the Roch using an Android Device
+      remappings:
+        - remap_from: cmd_vel
+          remap_to: /teleop/cmd_vel
+        - remap_from: compressed_image
+          remap_to: /teleop/compressed_image
+#      parameters:
+#          maximum_linear_velocity: __maximum_linear_velocity__
+#          maximum_angular_velocity: __maximum_angular_velocity__

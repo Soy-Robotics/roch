@@ -1,0 +1,6 @@
+display: Map Nav
+description: Navigation of Roch on pre_made map using Android apps.
+compatibility: rocon:/roch
+launch: map_nav.launch
+public_interface: map_nav.interface
+icon: map_nav_icon.png

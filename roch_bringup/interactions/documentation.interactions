@@ -1,0 +1,38 @@
+#########################################################################
+#  .-----------------------------------------------------------------.  #
+# /  .-.                                                         .-.  \ #
+#|  /   \                                                       /   \  |#
+#| |\_.  |            Documentation Interactions               |    /| |#
+#|\|  | /|                                                     |\  | |/|#
+#| `---' |                                                     | `---' |#
+#|       |                                                     |       |# 
+#|       |-----------------------------------------------------|       |#
+#\       |                                                     |       /#
+# \     /                                                       \     / #
+#  `---'                                                         `---'  #
+#########################################################################
+interactions:
+    - name: Ros Wiki - Roch
+      group: 'Documentation'
+      compatibility: rocon:/pc
+      command: web_url(http://wiki.ros.org/Robots/Roch)
+      description: Documentation for Roch on the ros wiki
+      icon:
+        resource_name: rocon_bubble_icons/ros.png
+
+    - name: Roch Page
+      group: 'Documentation'
+      compatibility: rocon:/pc
+      command: web_url(http://www.softrobtech.com/)
+      description: Official Roch
+      icon:
+        resource_name: rocon_bubble_icons/ros.png
+
+    - name: Keyboard Teleop 
+      group: 'PC Apps'
+      command: roch_teleop/keyboard_teleop.launch
+      description: Teleop the Roch using your keyboard
+      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+      max: -1
+      icon:
+        resource_name: roch_rapps/keyboard_teleop.png

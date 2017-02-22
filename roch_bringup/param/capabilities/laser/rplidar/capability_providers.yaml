@@ -1,0 +1,3 @@
+# default capability providers for the Rplidar 
+defaults:
+  'std_capabilities/LaserSensor': 'roch_capabilities/rplidar_laser_sensor'

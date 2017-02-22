@@ -1,6 +1,6 @@
 <package>
   <name>roch</name>
-  <version>1.0.9</version>
+  <version>1.0.10</version>
   <description>roch Project</description>
   <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
 
@@ -17,6 +17,7 @@
   <run_depend>roch_navigation</run_depend> 
   <run_depend>roch_teleop</run_depend> 
   <run_depend>roch_follower</run_depend> 
+  <run_depend>roch_rapps</run_depend> 
 
   <export>
     <metapackage/>

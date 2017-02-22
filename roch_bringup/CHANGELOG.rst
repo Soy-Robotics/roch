@@ -1,6 +1,17 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.10 (2017-02-17)
+------------------
+* Add Roch Image.
+* Remove unused param events/bumper and events/wheel_drop.
+* Add rocon_concert files, such as concert_minimal.launch and concert_client.launch.
+* Add param files for capabilities.
+* Support Orbbec Astra.
+* Add interactions.
+* Add missing dependences: laser_filters, rgbd_launch, nodelet, robot_sate_publisher, diagnostic_aggregator
+* Modify XML file of rplidar that string of serial_port to /dev/rplidar and frame_id to base_laser.
+
 1.0.9 (2017-02-07)
 ------------------
 

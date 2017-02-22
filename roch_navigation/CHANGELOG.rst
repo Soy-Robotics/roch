@@ -1,6 +1,12 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change log for package roch_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.10 (2017-02-17)
+------------------
+* Remove unused param events/bumper and events/wheel_drop.
+* Support Obbrec Astra.
+* Add missing package dependencies: nodelet, roch_safety_controller
+
 1.0.9 (2017-02-07)
 ------------------
 * Add run depend yocs_cmd_vel_mux.

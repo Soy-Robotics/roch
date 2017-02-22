@@ -1,0 +1,110 @@
+<!--
+  Launchers for rocon_concert and minimal with Roch.
+Copyright (c) 2017, SawYer Robotics
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of SawYer Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <!-- Roch Configure -->
+  <arg name="base"		    	default="$(env ROCH_BASE)"				doc="mobile base type [roch]"/>
+  <arg name="stacks"			default="$(env ROCH_STACKS)"			doc="stack type displayed in visualisation/simulation [standard]"/>
+  <arg name="3d_sensor"			default="$(env ROCH_3D_SENSOR)"			doc="3d sensor types [kinect, asus_xtion_pro, r200]"/>
+  <arg name="3d_sensor_enable"	default="$(env ROCH_3D_SENSOR_ENABLE)"	doc="3d sensor enable"/>
+  <arg name="2d_laser"			default="$(env ROCH_LASER)"				doc="2d laser types [ls01c, rplidar]"/>
+  <arg name="2d_laser_enable"	default="$(env ROCH_LASER_ENABLE)"		doc="2d laser enable"/>
+  <arg name="serialport"		default="$(env ROCH_SERIAL_PORT)"		doc="used by create to configure the port it is connected on [/dev/ttyUSB0, /dev/ttyS0]"/>
+  <arg name="simulation"        default="$(env ROCH_SIMULATION)"  		doc="set flags to indicate this turtle is run in simulation mode."/>
+
+  <!-- rocon master info & robot args-->
+  <arg name="robot_name" default="$(optenv ROBOT_NAME roch)"/>
+  <arg name="robot_type" default="$(optenv ROBOT_TYPE roch)"/>
+  <arg name="robot_icon" default="roch_base/roch_icon.png"/>
+  <arg name="robot_description"       value="SawYer Roch in concert"/>
+
+  <!-- rapp manager -->
+  <arg name="rapp_package_whitelist" value="[rocon_apps, roch_rapps]"/>
+  <arg name="rapp_package_blacklist"  value="[]"/>
+  <arg name="auto_start_rapp"         value=""  doc="autostart a rapp, e.g. 'rocon_apps/chirp'"/>
+  <arg name="screen"                  value="true"/>
+  <arg name="auto_rapp_installation"  value="false"/>
+  <arg name="rapp_preferred_configuration_file" default="$(find roch_bringup)/param/preferred_default.yaml" doc="pointer to a yaml file listing preferred rapps"/>
+
+  <!-- capabilities -->
+  <!-- Set capabilities to true will get error when run rosservice start_pairing and roch_rapps -->
+  <arg name="capabilities"                              value="false"/>
+  <arg name="capabilities_parameters"                   default="$(find roch_capabilities)/param/defaults_roch_capabilities.yaml"/>
+  <arg name="capabilities_server_name"                  default="capability_server"/>
+  <arg name="capabilities_nodelet_manager_name"         default="capability_server_nodelet_manager" />
+
+  <arg name="capabilities_package_whitelist"            default="[roch_capabilities, std_capabilities, capabilities]" /> <!-- get capabilities from these packages only -->
+
+<!--'std_capabilities/Diagnostics', 'std_capabilities/LaserSensor', 'std_capabilities/MultiEchoLaserSensor', 'std_capabilities/Navigation2D', 'std_capabilities/RGBDSensor', 'std_capabilities/RobotStatePublisher'-->
+  <arg name="capabilities_blacklist"                    default="['std_capabilities/MultiEchoLaserSensor', 'std_capabilities/Navigation2D']"/>
+
+  <!-- Interactions -->
+  <arg name="interactions" default="true" doc="start an interactions manager"/>
+  <arg name="interactions_list" default="$(env ROCH_INTERACTIONS_LIST)" doc="a list of filenames that provide interactions specifications."/>
+
+  <!-- Zeroconf -->
+  <arg name="zeroconf"                                  default="true"/>
+  <arg name="zeroconf_port"                             default="11311"/>
+
+  <!-- Launch Roch minimal.launch -->
+  <include file="$(find roch_bringup)/launch/minimal.launch">
+    <arg name="base"					value="$(arg base)"/>
+    <arg name="stacks"					value="$(arg stacks)"/>
+    <arg name="3d_sensor" 				value="$(arg 3d_sensor)" />
+    <arg name="3d_sensor_enable" 		value="$(arg 3d_sensor_enable)"/>
+    <arg name="2d_laser" 				value="$(arg 2d_laser)" />
+    <arg name="2d_laser_enable" 		value="$(arg 2d_laser_enable)" />
+    <arg name="serialport" 				value="$(arg serialport)" />
+  </include>
+
+  <!-- Launch Roch rocon rapp manager -->
+  <include file="$(find rocon_app_manager)/launch/standalone.launch"> 
+    <arg name="robot_name"                                value="$(arg robot_name)"/>
+    <arg name="robot_type"                                value="$(arg robot_type)"/>
+    <arg name="robot_icon"                                value="$(arg robot_icon)"/>
+    <arg name="robot_description"                         value="$(arg robot_description)"/>
+    <arg name="rapp_package_whitelist"                    value="$(arg rapp_package_whitelist)"/>
+    <arg name="rapp_package_blacklist"                    value="$(arg rapp_package_blacklist)"/>
+    <arg name="auto_start_rapp"                           value="$(arg auto_start_rapp)"/>
+    <arg name="screen"                                    value="$(arg screen)"/>
+    <arg name="auto_rapp_installation"                    value="$(arg auto_rapp_installation)"/>
+
+    <arg name="capabilities"                              value="$(arg capabilities)"/>
+    <arg name="capabilities_server_name"                  value="$(arg capabilities_server_name)"/>
+    <arg name="capabilities_nodelet_manager_name"         value="$(arg capabilities_nodelet_manager_name)"/>
+    <arg name="capabilities_parameters"                   value="$(arg capabilities_parameters)"/>
+    <arg name="capabilities_package_whitelist"            value="$(arg capabilities_package_whitelist)"/>
+    <arg name="capabilities_blacklist"                    value="$(arg capabilities_blacklist)"/>
+
+    <arg name="interactions"                              value="$(arg interactions)"/>
+    <arg name="interactions_list"              			  value="$(arg interactions_list)"/>
+
+    <arg name="zeroconf"                                  value="$(arg zeroconf)"/>
+    <arg name="zeroconf_port"                             value="$(arg zeroconf_port)"/>
+  </include>
+
+</launch>

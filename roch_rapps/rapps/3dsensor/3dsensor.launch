@@ -1,0 +1,7 @@
+<!--
+  Launchers for 3d camera on Roch
+-->
+
+<launch>
+  <include file="$(find roch_bringup)/launch/sensor.launch"/>
+</launch>

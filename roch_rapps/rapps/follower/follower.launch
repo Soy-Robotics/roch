@@ -1,0 +1,10 @@
+<!--
+  Launchers for roch follower.
+-->
+<launch>
+  <arg name="simulation"                  default="$(env ROCH_SIMULATION)"/> <!-- necessary param -->
+  <arg name="emulation"                   default="true"/> <!-- Enable/Disenable for simulation -->
+  <include file="$(find roch_follower)/launch/follower.launch">
+    <arg name="simulation" value="$(arg emulation)"/>
+  </include>
+</launch>

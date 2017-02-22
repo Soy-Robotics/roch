@@ -1,0 +1,6 @@
+display: 2D Laser
+description: 2D laser information on Roch.
+compatibility: rocon:/roch
+launch: 2dlaser.launch
+public_interface: 2dlaser.interface
+icon: 2dlaser_icon.png
