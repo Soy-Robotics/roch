@@ -1,9 +1,6 @@
 <!-- 
   Launchers for control Roch using keyboard.
-
+-->
 <launch>
   <include file="$(find roch_teleop)/launch/keyboard_teleop.launch"/>
-</launch>-->
-<launch>
-  <node name="talker" pkg="rospy_tutorials" type="talker" required="true"/>
 </launch>
