@@ -51,8 +51,8 @@
         <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_local_costmap_params.yaml" command="load" />   
         <rosparam file="$(find roch_navigation)/param/$(arg 2d_laser)_global_costmap_params.yaml" command="load" />
         <!-- lidar add dwa will get error which will always rotate -->
-<!--        <rosparam file="$(find roch_navigation)/param/dwa_local_planner_params.yaml" command="load" />-->
-        <rosparam file="$(find roch_navigation)/param/base_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find roch_navigation)/param/dwa_local_planner_params.yaml" command="load" />
+<!--         <rosparam file="$(find roch_navigation)/param/base_local_planner_params.yaml" command="load" />-->
         <rosparam file="$(find roch_navigation)/param/move_base_params.yaml" command="load" />
         <rosparam file="$(find roch_navigation)/param/global_planner_params.yaml" command="load" />
         <rosparam file="$(find roch_navigation)/param/navfn_global_planner_params.yaml" command="load" />
