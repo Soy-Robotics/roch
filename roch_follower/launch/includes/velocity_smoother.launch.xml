@@ -11,7 +11,7 @@
 
     <!-- Robot velocity feedbacks; use the default base configuration -->
     <remap from="follower_velocity_smoother/odometry" to="/odom"/>
-    <remap from="follower_velocity_smoother/robot_cmd_vel" to="/moblie_base/commands/velocity"/>
+    <remap from="follower_velocity_smoother/robot_cmd_vel" to="/roch_velocity_controller/cmd_vel"/>
 
     <!-- connecting between follower/cmd_vel in mobile_base_nodelet and smoother/raw_cmd_vel in camera_nodelet -->
 <!--     <remap from="follower_velocity_smoother/raw_cmd_vel" to="/mobile_base_nodelet_camera_nodelet/raw_cmd_vel"/> -->
