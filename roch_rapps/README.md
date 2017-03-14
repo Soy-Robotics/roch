@@ -61,8 +61,9 @@ $  git clone https://github.com/robotics-in-concert/rocon_tools
 After download these packages, build your ```catkin_ws```:
 ```
 $  cd  <your_catkin_ws>
+$  #checkout all required depends installation
+$  rosdep install --from-paths src --ignore-src --rosdistro indigo -y 
 $  catkin_make
-$  rosdep install --from-paths src --ignore-src --rosdistro indigo -y
 ```
 For now you can run ```concert_minimal.launch``` for using rapps of roch.
 
