@@ -29,9 +29,12 @@ Stacks & Packages | Version | Document |
 **world_canvas_msgs** | 0.1.0 | [wiki](http://wiki.ros.org/world_canvas_msgs) [github](https://github.com/corot/world_canvas_msgs) |
 
 Add some packages we can using `````apt-get````` for installing following command:
-
-    sudo apt-get install world_canvas_server world_canvas_libs world_canvas_msgs std_capabilities rt_capabilities concert_software_farm rocon_rapps capabilities concert_scheduling concert_services rqt_capabilities
-
+```
+$  sudo apt-get install ros-indigo-world-canvas-server ros-indigo-world-canvas-libs \
+    ros-indigo-world-canvas-msgs ros-indigo-std-capabilities ros-indigo-rt-capabilities \
+    ros-indigo-concert-software-farm ros-indigo-rocon-rapps ros-indigo-capabilities \
+    ros-indigo-concert-scheduling ros-indigo-concert-services ros-indigo-rqt-capabilities
+```
 ### Installation
 
 Under these stacks packages we need to install by ourselves:
@@ -46,19 +49,19 @@ Stacks & Packages | version |
 [rocon_tools](https://github.com/robotics-in-concert/rocon_tools) | 0.6.0 & above |
 
 Download these packages into your workspace:
-
-    cd ```<your_catkin_ws>```/src
-    git clone https://github.com/robotics-in-concert/rocon_app_platform
-    git clone https://github.com/robotics-in-concert/rocon_concert
-    git clone https://github.com/robotics-in-concert/rocon_msgs
-    git clone https://github.com/robotics-in-concert/rocon_qt_gui
-    git clone https://github.com/robotics-in-concert/rocon_qt_library
-    git clone https://github.com/robotics-in-concert/rocon_tools
-
+```
+$  cd  <your_catkin_ws>/src
+$  git clone https://github.com/robotics-in-concert/rocon_app_platform
+$  git clone https://github.com/robotics-in-concert/rocon_concert
+$  git clone https://github.com/robotics-in-concert/rocon_msgs
+$  git clone https://github.com/robotics-in-concert/rocon_qt_gui
+$  git clone https://github.com/robotics-in-concert/rocon_qt_library
+$  git clone https://github.com/robotics-in-concert/rocon_tools
+```
 After download these packages, build your ```catkin_ws```:
-
-    cd ```<your_catkin_ws>```
-    catkin_make
-
+```
+$  cd  <your_catkin_ws>
+$  catkin_make
+```
 For now you can run ```concert_minimal.launch``` for using rapps of roch.
 
