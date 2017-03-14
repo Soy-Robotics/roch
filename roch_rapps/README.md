@@ -30,10 +30,11 @@ Stacks & Packages | Version | Document |
 
 Add some packages we can using `````apt-get````` for installing following command:
 ```
-$  sudo apt-get install ros-indigo-world-canvas-server ros-indigo-world-canvas-libs \
-    ros-indigo-world-canvas-msgs ros-indigo-std-capabilities ros-indigo-rt-capabilities \
-    ros-indigo-concert-software-farm ros-indigo-rocon-rapps ros-indigo-capabilities \
-    ros-indigo-concert-scheduling ros-indigo-concert-services ros-indigo-rqt-capabilities
+$  sudo apt-get install ros-indigo-world-canvas-server ros-indigo-world-canvas-client-cpp \
+    ros-indigo-world-canvas-client-examples ros-indigo-world-canvas-client-py ros-indigo-world-canvas-utils \
+    ros-indigo-world-canvas-msgs ros-indigo-std-capabilities ros-indigo-rqt-capabilities \
+    ros-indigo-concert-software-farm ros-indigo-capabilities ros-indigo-concert-services  \
+    ros-indigo-concert-scheduling 
 ```
 ### Installation
 
@@ -62,6 +63,7 @@ After download these packages, build your ```catkin_ws```:
 ```
 $  cd  <your_catkin_ws>
 $  catkin_make
+$  rosdep install --from-paths src --ignore-src --rosdistro indigo -y
 ```
 For now you can run ```concert_minimal.launch``` for using rapps of roch.
 
