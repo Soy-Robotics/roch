@@ -13,7 +13,7 @@
     <param name="axis_deadman" value="4"/>
     <param name="axis_linear" value="1"/>
     <param name="axis_angular" value="0"/>
-    <remap from="roch_teleop_joystick/cmd_vel" to="teleop_velocity_smoother/raw_cmd_vel"/> 
+    <remap from="roch_teleop_joystick/cmd_vel" to="roch_velocity_smoother/raw_cmd_vel"/> 
     <!--<remap from="roch_teleop_joystick/cmd_vel" to="/roch_velocity_controller/cmd_vel"/>-->
   </node>
 
