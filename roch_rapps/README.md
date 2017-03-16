@@ -57,6 +57,7 @@ $  git clone https://github.com/robotics-in-concert/rocon_concert
 $  git clone https://github.com/robotics-in-concert/rocon_msgs
 $  git clone https://github.com/robotics-in-concert/rocon_qt_gui
 $  git clone https://github.com/robotics-in-concert/rocon_tools
+$  git clone https://github.com/robotics-in-concert/rocon_multimaster
 ```
 After download these packages, build your ```catkin_ws```:
 ```
