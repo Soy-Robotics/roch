@@ -1,5 +1,12 @@
 # roch_rapps Of Roch Stack Package
 
+
+## Table of Contents
+* [Preparation](#preparation)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Usage](#usage)
+
 ## Preparation
 
 Before starting run roch_rapps. There have some problems should be resolved, due to new packages of robotics-in-concert have not release with almost version in 0.10.0, so we should install these by ourselves.
@@ -68,3 +75,13 @@ $  catkin_make
 ```
 For now you can run ```concert_minimal.launch``` for using rapps of roch.
 
+### Usage
+There is an example for how to use roch_rapps, for now roch_rapps package is differebt old rocon package, due use new package, so you can use following command for checking.
+
+ * `` (#For first ternimal)`` Bringup your Roch
+ 
+   * ```  roslaunch roch_bringup concert_minimal.launch ```
+
+ * `` (#For sencond ternimal)`` Bringup rqt_remocon
+  
+   * ``` rqt_remocon```
