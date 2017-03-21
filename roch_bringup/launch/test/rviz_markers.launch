@@ -1,3 +1,0 @@
-<launch>
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rocon_interactions)/rviz/markers.rviz"/>
-</launch>
