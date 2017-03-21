@@ -12,64 +12,95 @@
 #  `---'                                                         `---'  #
 #########################################################################
 
-interactions:
-    - name: Rocon Master Info 
-      group: 'Admin'
-      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
-      command: rocon_master_info
-      description: Generic information about this master.
-      max: -1
+#######################################
+##      For Rocon 0.10.0             ##
+#######################################
+#interactions:
+#    - name: Rocon Master Info 
+#      group: 'Admin'
+#      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+#      command: rocon_master_info
+#      description: Generic information about this master.
+#      max: -1
 
-    - name: Rqt Graph (Ros Runnable)
-      group: 'Admin'
-      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
-      command: rqt_graph
-      description: Graph of all topics and services in the concert workspace.
-      max: -1
-      icon:
-        resource_name: roch_rapps/rqt.png  
+#    - name: Rqt Graph (Ros Runnable)
+#      group: 'Admin'
+#      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+#      command: rqt_graph
+#      description: Graph of all topics and services in the concert workspace.
+#      max: -1
+#      icon:
+#        resource_name: roch_rapps/rqt.png  
 
-    - name: Rqt Console (Ros Runnable)
-      group: 'Admin'
-      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
-      command: rqt_console
-      description: Shows the Rqt Console.
-      max: -1
-      icon:
-        resource_name: roch_rapps/rqt.png
+#    - name: Rqt Console (Ros Runnable)
+#      group: 'Admin'
+#      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+#      command: rqt_console
+#      description: Shows the Rqt Console.
+#      max: -1
+#      icon:
+#        resource_name: roch_rapps/rqt.png
 
-    - command: rqt_plot -t
-      group: 'Admin'
-      compatibility: rocon:/pc/*/indigo/trusty
-      name: Rqt Plot (Ros Runnable)
-      description: Plot particular variables on gopher.
-      max: -1
-      icon:
-        resource_name: roch_rapps/rqt.png
+#    - command: rqt_plot -t
+#      group: 'Admin'
+#      compatibility: rocon:/pc/*/indigo/trusty
+#      name: Rqt Plot (Ros Runnable)
+#      description: Plot particular variables on gopher.
+#      max: -1
+#      icon:
+#        resource_name: roch_rapps/rqt.png
 
-    - command: rqt_logger_level -t
-      group: 'Admin'
-      compatibility: rocon:/pc/*/indigo/trusty
-      name: Rqt Logger Level (Ros Runnable)
-      description: Loger level settings.
-      max: -1
-      icon:
-        resource_name: roch_rapps/rqt.png
+#    - command: rqt_logger_level -t
+#      group: 'Admin'
+#      compatibility: rocon:/pc/*/indigo/trusty
+#      name: Rqt Logger Level (Ros Runnable)
+#      description: Loger level settings.
+#      max: -1
+#      icon:
+#        resource_name: roch_rapps/rqt.png
 
-    - command: rqt_bag -t
-      group: 'Admin'
-      compatibility: rocon:/pc/*/indigo/trusty
-      name: Rqt Bag (Ros Runnable)
-      description: Bag manager for Ros.
-      max: -1
-      icon:
-        resource_name: roch_rapps/rqt.png
+#    - command: rqt_bag -t
+#      group: 'Admin'
+#      compatibility: rocon:/pc/*/indigo/trusty
+#      name: Rqt Bag (Ros Runnable)
+#      description: Bag manager for Ros.
+#      max: -1
+#      icon:
+#        resource_name: roch_rapps/rqt.png
 
-    - command: rqt_image_view -t
-      group: 'Admin'
-      compatibility: rocon:/pc/*/indigo/trusty
-      name: Rqt Image View (Ros Runnable)
-      description: Bag manager for Ros.
-      max: -1
-      icon:
-        resource_name: roch_rapps/rqt.png
+#    - command: rqt_image_view -t
+#      group: 'Admin'
+#      compatibility: rocon:/pc/*/indigo/trusty
+#      name: Rqt Image View (Ros Runnable)
+#      description: Bag manager for Ros.
+#      max: -1
+#      icon:
+#        resource_name: roch_rapps/rqt.png
+
+#######################################        
+##       For Rocon 0.7.0             ##
+####################################### 
+- name: rocon_master_info
+  role: 'Admin'
+  compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+  display_name: Rocon Master Info (Direct Executable)
+  description: Generic information about this master.
+  max: -1
+  
+- name: rqt_graph/rqt_graph
+  role: 'Admin'
+  compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+  display_name: Rqt Graph (ROS Runnable)
+  description: Graph of all topics and services in the concert workspace.
+  max: -1
+  icon:
+    resource_name: rocon_bubble_icons/rqt.png
+
+- name: rqt_console/rqt_console
+  role: 'Admin'
+  compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+  display_name: Rqt Console (ROS Runnable)
+  description: Shows the Rqt Console
+  max: -1
+  icon:
+    resource_name: rocon_bubble_icons/rqt.png
