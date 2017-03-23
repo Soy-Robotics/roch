@@ -1,6 +1,11 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change log for package roch_teleop
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.11 (2017-03-23)
+-------------------
+* Fixed send command can not move.
+* Update velocity_smoother.launch.xml.
+
 1.0.10 (2017-02-17)
 -------------------
 

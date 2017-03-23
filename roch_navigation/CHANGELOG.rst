@@ -1,6 +1,14 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change log for package roch_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.11 (2017-03-23)
+-------------------
+* Update safety_controll.launch.xml.
+* Update dwa_local_planner_params.yaml.
+* Reduce map file size.
+* Modified lidar launch files.
+* Adjusted all launch files.
+
 1.0.10 (2017-02-17)
 -------------------
 * Remove unused param events/bumper and events/wheel_drop.

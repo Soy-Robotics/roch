@@ -1,6 +1,12 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.11 (2017-03-23)
+-------------------
+* Add missing dependences: rocon_app_manager.
+* Modified lidar launch files.
+* Add rocon to Roch.
+
 1.0.10 (2017-02-17)
 -------------------
 * Add Roch Image.
