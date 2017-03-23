@@ -18,8 +18,10 @@
       <arg name="disparity_processing"            value="false"/>
       <arg name="disparity_registered_processing" value="false"/>
       <arg name="3d_sensor_nav_enabled"           value="false"/>
-	  <arg name="2d_laser_enabled"				  value="false"/>
+      <arg name="2d_laser_enabled"				  value="false"/>
     </include>
+    
+    <include file="$(find roch_follower)/launch/includes/safety_controller.launch.xml"/>
   </group>
   <group if="$(arg simulation)">
     <!-- Load nodelet manager for compatibility -->
