@@ -1,7 +1,0 @@
-# default providers for the Roch
-defaults:
-  'roch_capabilities/RochBringup':               'roch_capabilities/roch_bringup'
-  'roch_capabilities/RochUlt':                   'roch_capabilities/roch_ult'
-  'roch_capabilities/RochPSD':                   'roch_capabilities/roch_psd'
-  'roch_capabilities/RochCliff':                 'roch_capabilities/roch_cliff'
-  'std_capabilities/DifferentialMobileBase':     'roch_capabilities/roch_differential_mobile_base'
