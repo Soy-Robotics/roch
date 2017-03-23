@@ -1,3 +1,0 @@
-# default capability providers for the Intel Realsense 200
-defaults:
-  'std_capabilities/RGBDSensor': 'roch_capabilities/r200_rgbd_sensor'

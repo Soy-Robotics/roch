@@ -1,3 +1,0 @@
-# default capability providers for the Ls01c
-defaults:
-  'std_capabilities/LaserSensor': 'roch_capabilities/ls01c_laser_sensor'
