@@ -1,6 +1,10 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.12 (2017-03-30)
+-------------------
+* [roch_bringup]: Comment roch_capabilities and roch_viz due to circle dependencies.
+
 1.0.11 (2017-03-23)
 -------------------
 * Add missing dependences: rocon_app_manager.

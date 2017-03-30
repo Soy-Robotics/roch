@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>roch_bringup</name>
-  <version>1.0.11</version>
+  <version>1.0.12</version>
   <description>SawYer roch installation and integration package</description>
 
   <author email="wzhang@softrobtech.com">Carl</author>
@@ -46,7 +46,6 @@
   <run_depend>rospy</run_depend>
   <run_depend>depthimage_to_laserscan</run_depend>
   <run_depend>zeroconf_avahi</run_depend>
-  <run_depend>rocon_app_manager</run_depend>
   <run_depend>diagnostic_aggregator</run_depend>
   <run_depend>rocon_interaction_msgs</run_depend>
   <run_depend>rocon_app_manager_msgs</run_depend>

@@ -1,6 +1,6 @@
 <package>
   <name>roch_teleop</name>
-   <version>1.0.11</version>
+   <version>1.0.12</version>
   <description>SawYer roch controller configurations</description>
 
   <author email="wzhang@softrobtech.com">Carl</author>
