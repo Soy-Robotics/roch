@@ -22,22 +22,16 @@
             wheel_diameter: 0.095
             polling_timeout: 10.0
             cliff_hegiht: 0.1
-            ult_length: 0.3
-            psd_length: 0.3 
+            ult_length: 0.1
+            psd_length: 0.1 
         </rosparam>
         <!-- cliff_hegiht, ult_length, psd_length is for avoid distance(meter)-->
-        <remap from="navigation_velocity_smoother/raw_cmd_vel" to="cmd_vel"/>
-	<!-- <remap from="roch_velocity_controller/odom" to="odom"/>for robot_pose_ekf -->
+	<!-- <remap from="roch_velocity_controller/odom" to="odom"/>for robot_pose_ekf, do not modify these -->
         <remap from="/core_sensors" to="mobile_base/sensors/core"/>
     </node>
 
     <!-- Differential controller parameters and basic localization -->
     <include file="$(find roch_control)/launch/control.launch" />
-
-    <!--Teleop -->
-<!--    <include file="$(find roch_control)/launch/teleop.launch" /> 
-    <include file="$(find roch_teleop)/launch/keyboard_teleop.launch" />-->
-
 
     <!-- Diagnostic Aggregator -->
     <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
@@ -48,6 +42,4 @@
    <!-- ult/cliff/psd to pointcloud -->
    <include file="$(find roch_bringup)/launch/includes/roch/sensorpc.launch.xml"/>
    
-   <!-- test safety controller is run current or not
-   <include file="$(find roch_bringup)/launch/includes/roch/safety_controller.launch.xml"/>-->
 </launch>
