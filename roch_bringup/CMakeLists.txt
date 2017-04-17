@@ -10,8 +10,5 @@ catkin_add_env_hooks(25.roch
 
 roslaunch_add_file_check(launch)
 
-install(PROGRAMS scripts/install scripts/calibrate_compass scripts/compute_calibration 
-   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-
 install(DIRECTORY launch  config param images interactions test
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
