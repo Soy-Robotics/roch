@@ -3,11 +3,11 @@
 # which runs on top.
 
 # Mandatory parameters
-speed_lim_v: 0.8
-speed_lim_w: 2.5
+speed_lim_v: 0.4 
+speed_lim_w: 2.0 
 
-accel_lim_v: 1.0 # maximum is actually 2.0, but we push it down to be smooth
-accel_lim_w: 2.0
+accel_lim_v: 0.2 
+accel_lim_w: 0.4 
 
 # Optional parameters
 frequency: 20.0
