@@ -39,7 +39,6 @@
   <run_depend>openni2_launch</run_depend>
   <run_depend>freenect_launch</run_depend>
   <run_depend>astra_launch</run_depend>
-  <run_depend>robot_upstart</run_depend>
   <run_depend>tf</run_depend>
   <run_depend>tf2_ros</run_depend>
   <run_depend>rospy</run_depend>
