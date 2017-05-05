@@ -16,6 +16,7 @@
 
             control_frequency: 50.0
             diagnostic_frequency: 1.0
+            diffspeed: true
 
             max_acceleration: 3.0
             max_speed: 0.45
@@ -26,7 +27,7 @@
             psd_length: 0.1 
         </rosparam>
         <!-- cliff_hegiht, ult_length, psd_length is for avoid distance(meter)-->
-	<!-- <remap from="roch_velocity_controller/odom" to="odom"/>for robot_pose_ekf, do not modify these -->
+        <remap from="navigation_velocity_smoother/raw_cmd_vel" to="cmd_vel"/>
         <remap from="/core_sensors" to="mobile_base/sensors/core"/>
     </node>
 
