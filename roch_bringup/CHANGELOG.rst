@@ -1,6 +1,9 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.13 (2017-05-08)
+-------------------
+
 1.0.12 (2017-03-30)
 -------------------
 * [roch_bringup]: Comment roch_viz due to circle dependencies.
