@@ -9,11 +9,11 @@
 
 : ${ROCH_BASE:=roch}                             # roch
 : ${ROCH_STACKS:=standard}                       # standard
-: ${ROCH_3D_SENSOR:=r200}				 		 # kinect, asus_xtion_pro, asus_xtion_pro_offset, r200
-: ${ROCH_LASER:=rplidar}				 		 # ls01c, rplidar
-: ${ROCH_LASER_ENABLE:=FALSE}				   	 # enable laser
+: ${ROCH_3D_SENSOR:=astra}				 		 # kinect, asus_xtion_pro, asus_xtion_pro_offset, r200, astra
 : ${ROCH_3D_SENSOR_ENABLE:=TRUE}             	 # enable 3d sensor
 : ${ROCH_3D_SENSOR_NAV_ENABLE:=FALSE}			 # enable 3d sensor for navigation 
+: ${ROCH_LASER:=rplidar}				 		 # ls01c, rplidar
+: ${ROCH_LASER_ENABLE:=TRUE}				   	 # enable laser
 : ${ROCH_SIMULATION:=false}
 : ${ROCH_SERIAL_PORT:=/dev/roch}                 # /dev/ttyUSB0, /dev/ttyS0
 
