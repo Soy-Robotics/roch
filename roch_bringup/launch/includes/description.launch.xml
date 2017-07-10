@@ -32,4 +32,10 @@
     </group>
   </group>
 
+  <group unless="$(arg 3d_sensor_enable)">
+    <group unless="$(arg 2d_laser_enable)">
+         <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find roch_description)/robots/$(arg base)_$(arg stacks).urdf.xacro'" />
+ 	 <param name="robot_description" command="$(arg urdf_file)" /> 
+    </group>
+  </group>
 </launch>
