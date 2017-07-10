@@ -106,5 +106,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="zeroconf"                                  value="$(arg zeroconf)"/>
     <arg name="zeroconf_port"                             value="$(arg zeroconf_port)"/>
   </include>
-
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
 </launch>
