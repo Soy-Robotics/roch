@@ -34,10 +34,10 @@
 #include "boost/thread/thread.hpp"
 #include "ros/console.h"
 
-class RochTeleop
+class RochXboxTeleop
 {
 public:
-  RochTeleop();
+  RochXboxTeleop();
 
 private:
   void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
@@ -46,7 +46,9 @@ private:
   ros::NodeHandle ph_, nh_;
 
   int linear_, angular_, deadman_axis_;
+  int forward_, left_, right_, back_;
   double l_scale_, a_scale_;
+  double linear_speed_, angular_speed_;
   ros::Publisher vel_pub_;
   ros::Subscriber joy_sub_;
 
@@ -58,39 +60,69 @@ private:
 
 };
 
-RochTeleop::RochTeleop():
+RochXboxTeleop::RochXboxTeleop():
   ph_("~"),
   linear_(1),
   angular_(0),
+  forward_(3),
+  back_(0),
+  left_(2),
+  right_(1),
   deadman_axis_(4),
   l_scale_(0.3),
-  a_scale_(0.9)
+  a_scale_(0.9),
+  linear_speed_(0.5),
+  angular_speed_(2.5)
 {
   ph_.param("axis_linear", linear_, linear_);
   ph_.param("axis_angular", angular_, angular_);
+  ph_.param("axis_forward", forward_, forward_);
+  ph_.param("axis_back", back_, back_);
+  ph_.param("axis_left", left_, left_);
+  ph_.param("axis_right", right_, right_);
   ph_.param("axis_deadman", deadman_axis_, deadman_axis_);
   ph_.param("scale_angular", a_scale_, a_scale_);
   ph_.param("scale_linear", l_scale_, l_scale_);
+  ph_.param("linear_speed", linear_speed_, linear_speed_);
+  ph_.param("angular_speed", angular_speed_, angular_speed_);
 
   deadman_pressed_ = false;
   zero_twist_published_ = false;
 
   vel_pub_ = ph_.advertise<geometry_msgs::Twist>("cmd_vel", 1, true);
-  joy_sub_ = nh_.subscribe<sensor_msgs::Joy>("joy", 10, &RochTeleop::joyCallback, this);
+  joy_sub_ = nh_.subscribe<sensor_msgs::Joy>("joy", 10, &RochXboxTeleop::joyCallback, this);
 
-  timer_ = nh_.createTimer(ros::Duration(0.1), boost::bind(&RochTeleop::publish, this));
+  timer_ = nh_.createTimer(ros::Duration(0.1), boost::bind(&RochXboxTeleop::publish, this));
 }
 
-void RochTeleop::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
+void RochXboxTeleop::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 { 
   geometry_msgs::Twist vel;
-  vel.angular.z = a_scale_*joy->axes[angular_];
-  vel.linear.x = l_scale_*joy->axes[linear_];
+  if( (a_scale_*joy->axes[angular_] != 430) || (l_scale_*joy->axes[linear_] != 255) ){
+    vel.angular.z = a_scale_*joy->axes[angular_];
+    vel.linear.x = l_scale_*joy->axes[linear_];
+  }
+  if( joy->buttons[forward_]){
+    vel.angular.z = 0;
+    vel.linear.x = linear_speed_;
+  }
+  if( joy->buttons[back_]){
+    vel.angular.z = 0;
+    vel.linear.x = -linear_speed_;
+  }
+  if( joy->buttons[left_]){
+    vel.angular.z = angular_speed_;
+    vel.linear.x = 0;
+  }
+  if( joy->buttons[right_]){
+    vel.angular.z = -angular_speed_;
+    vel.linear.x = 0;
+  }
   last_published_ = vel;
   deadman_pressed_ = joy->buttons[deadman_axis_];
 }
 
-void RochTeleop::publish()
+void RochXboxTeleop::publish()
 {
   boost::mutex::scoped_lock lock(publish_mutex_);
 
@@ -109,7 +141,7 @@ void RochTeleop::publish()
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "roch_teleop");
-  RochTeleop roch_teleop;
+  RochXboxTeleop husky_xbox_teleop;
 
   ros::spin();
 }
