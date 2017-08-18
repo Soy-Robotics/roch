@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+\file      amcl_without_sensor.launch
+\authors   Carl <wzhang@softrobtech.com>
+\copyright Copyright (c) 2017, SawYer Robotics, Inc., All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the 
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of SawYer Robotics nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <arg name="3d_sensor"					        default="$(env ROCH_3D_SENSOR)"/>  <!-- kinect, asus_xtion_pro, r200 -->
+  <arg name="2d_laser"					        default="$(env ROCH_LASER)"/>  <!-- ls01c, rplidar -->
+  <arg name="2d_laser_enabled"		      default="$(env ROCH_LASER_ENABLE)"/> <!-- if add 2d laser or not  -->
+  <arg name="3d_sensor_enabled"		      default="$(env ROCH_3D_SENSOR_ENABLE)"/> <!-- if add 3d sensor or not  -->
+  <arg name="3d_sensor_nav_enabled"		  default="$(env ROCH_3D_SENSOR_NAV_ENABLE)"/> <!-- if add 3d sensor for navigation -->
+  <arg name="map_file"					        default="$(env ROCH_MAP_FILE)"/> <!-- Run map sever -->
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" output="screen" />
+
+  <arg name="initial_pose_x" default="0.0"/> <!-- Use 17.0 for willow's map in simulation -->
+  <arg name="initial_pose_y" default="0.0"/> <!-- Use 17.0 for willow's map in simulation -->
+  <arg name="initial_pose_a" default="0.0"/>
+  <!--- Run AMCL -->
+  <group if="$(arg 3d_sensor_enabled)">
+	<group if="$(arg 3d_sensor_nav_enabled)"> 
+      <include file="$(find roch_navigation)/launch/includes/$(arg 3d_sensor)_amcl.launch" >
+  	  <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+	  <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+   	  <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+      </include>
+	</group>
+  </group>
+  <group if="$(arg 2d_laser_enabled)">
+    <group unless="$(arg 3d_sensor_nav_enabled)">
+      <include file="$(find roch_navigation)/launch/includes/$(arg 2d_laser)_amcl.launch" >
+  	  <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+	  <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+   	  <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+      </include>
+	</group>
+  </group>
+
+  <!--- Run Move Base -->
+  <include file="$(find roch_navigation)/launch/move_base.launch" >
+    <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+    <arg name="3d_sensor_enabled" value="$(arg 3d_sensor_enabled)"/>
+	<arg name="3d_sensor_nav_enabled" value="$(arg 3d_sensor_nav_enabled)"/>
+    <arg name="2d_laser" value="$(arg 2d_laser)"/>
+    <arg name="2d_laser_enabled" value="$(arg 2d_laser_enabled)"/>
+  </include>
+
+</launch>
