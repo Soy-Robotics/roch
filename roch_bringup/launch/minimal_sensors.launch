@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2017, SawYer Robotics
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of SawYer Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <!-- Roch Configure -->
+  <arg name="base"		    	default="$(env ROCH_BASE)"				doc="mobile base type [roch]"/>
+  <arg name="stacks"			default="$(env ROCH_STACKS)"			doc="stack type displayed in visualisation/simulation [standard]"/>
+  <arg name="3d_sensor"			default="$(env ROCH_3D_SENSOR)"			doc="3d sensor types [kinect, asus_xtion_pro, r200]"/>
+  <arg name="3d_sensor_enable"	default="$(env ROCH_3D_SENSOR_ENABLE)"	doc="3d sensor enable"/>
+  <arg name="3d_sensor_nav_enable"	default="$(env ROCH_3D_SENSOR_NAV_ENABLE)"	doc="3d sensor navigation enable"/>
+  <arg name="2d_laser"			default="$(env ROCH_LASER)"				doc="2d laser types [ls01c, rplidar]"/>
+  <arg name="2d_laser_enable"	default="$(env ROCH_LASER_ENABLE)"		doc="2d laser enable"/>
+  <arg name="serialport"		default="$(env ROCH_SERIAL_PORT)"		doc="used by create to configure the port it is connected on [/dev/ttyUSB0, /dev/ttyS0]"/>
+  <arg name="simulation"        default="$(env ROCH_SIMULATION)"  		doc="set flags to indicate this turtle is run in simulation mode."/>
+  <arg name="robot_name"        default="$(env ROCH_NAME)"       		doc="used as a unique identifier and occasionally to preconfigure root namespaces, gateway/zeroconf ids etc."/>
+  <arg name="robot_type"        default="$(env ROCH_TYPE)"       		doc="just in case you are considering a 'variant' and want to make use of this."/>
+
+  <param name ="/use_sim_time" value="$(arg simulation)"/>
+
+  <!-- Load robot model -->
+  <include file="$(find roch_bringup)/launch/includes/robot.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="stacks" value="$(arg stacks)" />
+    <arg name="3d_sensor" value="$(arg 3d_sensor)" />
+    <arg name="3d_sensor_enable" value="$(arg 3d_sensor_enable)"/>
+    <arg name="2d_laser" value="$(arg 2d_laser)" />
+    <arg name="2d_laser_enable" value="$(arg 2d_laser_enable)" />
+  </include>
+
+  <!-- Load robot base-->
+  <include file="$(find roch_bringup)/launch/includes/mobile_base.launch.xml">
+    <arg name="base" value="$(arg base)" />
+    <arg name="serialport" value="$(arg serialport)" />
+  </include>
+  
+  <!-- "camera" should uniquely identify the device. All topics are pushed down
+       into the "camera" namespace, and it is prepended to tf frame ids. -->
+  <arg name="camera"					  default="camera"/>
+  <arg name="publish_tf"			      default="false"/>
+
+  <!-- Factory-calibrated depth registration -->
+  <arg name="depth_registration"              default="true"/>
+  <arg     if="$(arg depth_registration)" name="depth" value="depth_registered" />
+  <arg unless="$(arg depth_registration)" name="depth" value="depth" />
+
+  <!-- Processing Modules -->
+  <arg name="rgb_processing"                  default="true"/>
+  <arg name="ir_processing"                   default="true"/>
+  <arg name="depth_processing"                default="true"/>
+  <arg name="depth_registered_processing"     default="true"/>
+  <arg name="disparity_processing"            default="true"/>
+  <arg name="disparity_registered_processing" default="true"/>
+  <arg name="scan_processing"                 default="true"/>
+
+  <!-- Worker threads for the nodelet manager -->
+  <arg name="num_worker_threads" default="4" />
+
+  <!-- Laserscan topic -->
+  <arg name="scan_topic" default="scan"/>
+  <group if="$(arg 3d_sensor_enable)">
+  <include file="$(find roch_bringup)/launch/includes/3dsensor/$(arg 3d_sensor).launch.xml">
+    <arg name="camera"                          value="$(arg camera)"/>
+    <arg name="publish_tf"                      value="$(arg publish_tf)"/>
+    <arg name="depth_registration"              value="$(arg depth_registration)"/>
+    <arg name="num_worker_threads"              value="$(arg num_worker_threads)" />
+
+    <!-- Processing Modules -->
+    <arg name="rgb_processing"                  value="$(arg rgb_processing)"/>
+    <arg name="ir_processing"                   value="$(arg ir_processing)"/>
+    <arg name="depth_processing"                value="$(arg depth_processing)"/>
+    <arg name="depth_registered_processing"     value="$(arg depth_registered_processing)"/>
+    <arg name="disparity_processing"            value="$(arg disparity_processing)"/>
+    <arg name="disparity_registered_processing" value="$(arg disparity_registered_processing)"/>
+  </include>
+
+   <!--                        Laserscan 
+     This uses lazy subscribing, so will not activate until scan is requested.
+   -->
+  <group if="$(arg 3d_sensor_nav_enable)">
+    <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet $(arg camera)/$(arg camera)_nodelet_manager">
+      <!-- Pixel rows to use to generate the laserscan. For each column, the scan will
+           return the minimum value for those pixels centered vertically in the image. -->
+      <param name="scan_height" value="10"/>
+      <param name="output_frame_id" value="/$(arg camera)_depth_frame"/>
+      <param name="range_min" value="0.45"/>
+      <remap from="image" to="$(arg camera)/$(arg depth)/image_raw"/>
+      <remap from="scan" to="$(arg scan_topic)"/>
+
+      <!-- Somehow topics here get prefixed by "$(arg camera)" when not inside an app namespace,
+           so in this case "$(arg scan_topic)" must provide an absolute topic name (issue #88).
+           Probably is a bug in the nodelet manager: https://github.com/ros/nodelet_core/issues/7 -->
+      <remap from="$(arg camera)/image" to="$(arg camera)/$(arg depth)/image_raw"/>
+      <remap from="$(arg camera)/scan" to="$(arg scan_topic)"/>
+    </node>
+  </group>
+  </group>
+   <!--                        2DLaser 
+   -->
+  <group if="$(arg 2d_laser_enable)">
+    <include file="$(find roch_bringup)/launch/includes/laser/$(arg 2d_laser).launch.xml"/>
+</group>
+</launch>
