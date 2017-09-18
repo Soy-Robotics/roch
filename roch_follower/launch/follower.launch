@@ -27,7 +27,7 @@
 
     <include file="$(find roch_follower)/launch/includes/velocity_smoother.launch.xml">
       <arg name="nodelet_manager"  value="camera/camera_nodelet_manager"/>
-      <arg name="navigation_topic" value="/roch_velocity_controller/cmd_vel"/>
+      <arg name="navigation_topic" value="/twist/input/navi"/>
     </include>
   </group>
 
