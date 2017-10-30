@@ -314,6 +314,6 @@ private:
   ros::Publisher bboxpub_;
 };
 
-PLUGINLIB_DECLARE_CLASS(roch_follower, RochFollower, roch_follower::RochFollower, nodelet::Nodelet);
+PLUGINLIB_EXPORT_CLASS(roch_follower::RochFollower, nodelet::Nodelet)
 
 }
