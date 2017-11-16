@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>roch_rapps</name>
-  <version>1.0.14</version>
+  <version>1.0.15</version>
   <description>The roch_rapps package for set of 'app manager' apps definition</description>
 
   <maintainer email="wzhang@softrobtech.com">Carl</maintainer>

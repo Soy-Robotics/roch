@@ -1,6 +1,11 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_follower
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.15 (2017-11-16)
+-------------------
+*update to use non deprecated pluginlib macro
+*Author: mikaelarguedas.
+
 1.0.14 (2017-09-18)
 -------------------
 
