@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2010, Willow Garage, Inc.
+ * Copyright (c) 2017, SawYer Robotics, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,8 +47,8 @@ private:
   ros::NodeHandle ph_, nh_;
 
   int linear_, angular_, deadman_axis_;
-  int forward_, left_, right_, back_;
-  double l_scale_, a_scale_;
+  int forward_, left_, right_, back_, increase_, reduce_;
+  double l_scale_, a_scale_, increase_scale_, reduce_scale_;
   double linear_speed_, angular_speed_;
   ros::Publisher vel_pub_;
   ros::Subscriber joy_sub_;
@@ -68,6 +69,10 @@ RochXboxTeleop::RochXboxTeleop():
   back_(0),
   left_(2),
   right_(1),
+  increase_(13),
+  reduce_(14),
+  increase_scale_(1.1),
+  reduce_scale_(.9),
   deadman_axis_(4),
   l_scale_(0.3),
   a_scale_(0.9),
@@ -102,6 +107,14 @@ void RochXboxTeleop::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     vel.angular.z = a_scale_*joy->axes[angular_];
     vel.linear.x = l_scale_*joy->axes[linear_];
   }
+  if( joy->buttons[increase_]){
+    linear_speed_ *= increase_scale_;
+    angular_speed_ *= increase_scale_;
+  }
+  if( joy->buttons[reduce_]){
+    linear_speed_ *= reduce_scale_;
+    angular_speed_ *= reduce_scale_;
+  }
   if( joy->buttons[forward_]){
     vel.angular.z = 0;
     vel.linear.x = linear_speed_;
@@ -120,6 +133,7 @@ void RochXboxTeleop::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
   }
   last_published_ = vel;
   deadman_pressed_ = joy->buttons[deadman_axis_];
+  ROS_INFO_STREAM("current linear speed:"<<linear_speed_<<"\t angular speed:"<<angular_speed_);
 }
 
 void RochXboxTeleop::publish()
