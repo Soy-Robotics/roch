@@ -27,7 +27,7 @@
 #    - name: Roch Page
 #      group: 'Documentation'
 #      compatibility: rocon:/pc
-#      command: web_url(http://www.softrobtech.com/)
+#      command: web_url(http://www.soyrobotics.com/)
 #      description: Official Roch
 #      icon:
 #        resource_name: rocon_bubble_icons/ros.png
@@ -53,7 +53,7 @@
    icon:
      resource_name: rocon_bubble_icons/ros.png
      
- - name: web_url(http://www.softrobtech.com)
+ - name: web_url(http://www.soyrobotics.com/)
    role: 'Documentation'
    compatibility: rocon:/pc
    display_name: Roch Offical Page
