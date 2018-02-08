@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2010, Willow Garage, Inc.
- * Copyright (c) 2017, SawYer Robotics, Inc.
+ * Copyright (c) 2017, Soy Robotics, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

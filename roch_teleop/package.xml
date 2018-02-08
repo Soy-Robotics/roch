@@ -1,14 +1,14 @@
 <package>
   <name>roch_teleop</name>
    <version>1.0.15</version>
-  <description>SawYer roch controller configurations</description>
+  <description>Soy roch controller configurations</description>
 
-  <author email="wzhang@softrobtech.com">Carl</author>
+  <author email="carlzhang@soyrobotics.com">Carl</author>
 
-  <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
+  <maintainer email="carlzhang@soyrobotics.com">Carl</maintainer>
   <url type="website">http://ros.org/wiki/roch_teleop</url>
-  <url type="bugtracker">https://github.com/roch/roch/issues</url>
-  <url type="repository">https://github.com/roch/roch</url>
+  <url type="bugtracker">https://github.com/Soy-Robotics/roch/issues</url>
+  <url type="repository">https://github.com/Soy-Robotics/roch</url>
 
   <license>BSD</license>
 

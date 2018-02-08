@@ -10,8 +10,8 @@
   <license>BSD</license>
 
   <url type="website">http://ros.org/wiki/roch_follower</url>
-  <url type="bugtracker">https://github.com/roch/roch/issues</url>
-  <url type="repository">https://github.com/roch/roch</url>
+  <url type="bugtracker">https://github.com/Soy-Robotics/roch/issues</url>
+  <url type="repository">https://github.com/Soy-Robotics/roch</url>
 
 
   <author email="tony.pratkanis@to.do">Tony Pratkanis</author> 
