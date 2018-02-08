@@ -4,7 +4,7 @@
   <arg name="robot_name" default="$(optenv ROBOT_NAME roch)"/>
   <arg name="robot_type" default="$(optenv ROBOT_TYPE roch)"/>
   <arg name="robot_icon" default="roch_base/roch_icon.png"/>
-  <arg name="robot_description"       value="SawYer Roch in concert"/>
+  <arg name="robot_description"       value="Soy Roch in concert"/>
 
   <!-- rapp manager -->
   <arg name="rapp_package_whitelist" value="[rocon_apps, roch_rapps]"/>

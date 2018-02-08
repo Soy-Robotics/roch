@@ -2,15 +2,15 @@
 <package>
   <name>roch_navigation</name>
   <version>1.0.15</version>
-  <description>Autonomous mapping and navigation demos for the SawYer Roch</description>
+  <description>Autonomous mapping and navigation demos for the Soy Roch</description>
 
-  <author email="wzhang@softrobtech.com">Carl</author>
+  <author email="carlzhang@soyrobotics.com">Carl</author>
 
-  <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
+  <maintainer email="carlzhang@soyrobotics.com">Carl</maintainer>
 
   <url type="website">http://ros.org/wiki/roch_navigation</url>
-  <url type="bugtracker">https://github.com/roch/roch/issues</url>
-  <url type="repository">https://github.com/roch/roch</url>
+  <url type="bugtracker">https://github.com/Soy-Robotics/roch/issues</url>
+  <url type="repository">https://github.com/Soy-Robotics/roch</url>
 
   <license>BSD</license>
 

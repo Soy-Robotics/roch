@@ -1,7 +1,7 @@
 roch
 =====
 
-Common ROS packages for the [SawYer Roch](http://wiki.ros.org/Robots/Roch), useable for both simulation and
+Common ROS packages for the [Soy Roch](http://wiki.ros.org/Robots/Roch), useable for both simulation and
 real robot operation.
 
  - roch_teleop : Some demos control Roch. 
