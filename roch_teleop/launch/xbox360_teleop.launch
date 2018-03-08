@@ -7,7 +7,7 @@
   <!--  smooths inputs from cmd_vel_mux/input/teleop_raw to cmd_vel_mux/input/teleop -->
   <include file="$(find roch_teleop)/launch/includes/velocity_smoother.launch.xml"/>
 
-  <node pkg="roch_teleop" type="roch_teleop_joy" name="roch_teleop_joystick">
+  <node pkg="roch_teleop" type="roch_xbox_joy" name="roch_teleop_joystick">
     <param name="scale_angular" value="1.5"/>
     <param name="scale_linear" value="0.5"/>
     <param name="linear_speed" value="0.5"/>
