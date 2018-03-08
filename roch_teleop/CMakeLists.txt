@@ -33,7 +33,7 @@ install(PROGRAMS
 )
 
 ## Mark executables and/or libraries for installation
-install(TARGETS roch_teleop_joy
+install(TARGETS roch_teleop_joy roch_xbox_joy
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
