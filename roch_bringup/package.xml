@@ -43,9 +43,6 @@
   <run_depend>depthimage_to_laserscan</run_depend>
   <run_depend>zeroconf_avahi</run_depend>
   <run_depend>diagnostic_aggregator</run_depend>
-  <run_depend>rocon_interaction_msgs</run_depend>
-  <run_depend>rocon_app_manager_msgs</run_depend>
-  <run_depend>rocon_app_manager</run_depend> 
   <run_depend>laser_filters</run_depend>
   <run_depend>rgbd_launch</run_depend>
   <run_depend>nodelet</run_depend>

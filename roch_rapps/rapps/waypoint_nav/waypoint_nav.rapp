@@ -1,5 +1,0 @@
-display: Waypoint Navigation
-description: Roch navigates around a set of waypoints
-compatibility: rocon:/roch
-launch: waypoint_nav.launch
-parent_name: rocon_apps/waypoint_nav

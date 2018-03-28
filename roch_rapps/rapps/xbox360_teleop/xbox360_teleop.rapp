@@ -1,6 +1,0 @@
-display: Xbox360 Control
-description: Control Roch with an xbox360 joystick.
-compatibility: rocon:/roch
-launch: xbox360_teleop.launch
-public_interface: xbox360_teleop.interface
-icon: xbox360_teleop_icon.png

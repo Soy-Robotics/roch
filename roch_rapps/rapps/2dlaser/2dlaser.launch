@@ -1,7 +1,0 @@
-<!--
-  Launchers for 2d laser on Roch
--->
-
-<launch>
-  <include file="$(find roch_bringup)/launch/sensor.launch"/>
-</launch>

@@ -1,6 +1,0 @@
-display: Keyboard Control
-description: Control Roch with Keyboard.
-compatibility: rocon:/roch
-launch: keyboard_teleop.launch
-public_interface: keyboard_teleop.interface
-icon: keyboard_teleop_icon.png

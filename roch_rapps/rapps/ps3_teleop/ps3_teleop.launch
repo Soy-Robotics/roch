@@ -1,6 +1,0 @@
-<!-- 
-  Launchers for control Roch using ps3.
--->
-<launch>
-  <include file="$(find roch_teleop)/launch/ps3_teleop.launch"/>
-</launch>

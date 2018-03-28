@@ -1,6 +1,0 @@
-display: Video Control
-description: Control Roch using a touch joystick and video feed.
-compatibility: rocon:/roch
-launch: video_teleop.launch
-icon: video_teleop_icon.png
-parent_name: rocon_apps/video_teleop

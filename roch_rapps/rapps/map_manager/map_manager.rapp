@@ -1,6 +1,0 @@
-display: Roch Map Manager
-description: Map datebase manager for Roch.
-compatibility: rocon:/roch
-launch: map_manager.launch
-public_interface: map_manager.interface
-icon: map_manager_icon.png

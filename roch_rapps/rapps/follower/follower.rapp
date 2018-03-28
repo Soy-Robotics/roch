@@ -1,6 +1,0 @@
-display: Roch Follower
-description: Roch will follow whatever is in front of it.
-compatibility: rocon:/roch
-launch: follower.launch
-public_interface: follower.interface
-icon: follower_icon.png

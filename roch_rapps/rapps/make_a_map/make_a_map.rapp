@@ -1,6 +1,0 @@
-display: Map building
-description: Using Android Apps control Roch for mapping.
-compatibility: rocon:/roch
-launch: make_a_map.launch
-icon: make_a_map_icon.png
-parent_name: rocon_apps/make_a_map

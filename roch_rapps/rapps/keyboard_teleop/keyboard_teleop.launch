@@ -1,6 +1,0 @@
-<!-- 
-  Launchers for control Roch using keyboard.
--->
-<launch>
-  <include file="$(find roch_teleop)/launch/keyboard_teleop.launch"/>
-</launch>
