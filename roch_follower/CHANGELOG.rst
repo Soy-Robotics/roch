@@ -1,6 +1,11 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_follower
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.16 (2018-03-28)
+-------------------
+* Remap email and website.
+* Contributors: doudou0114
+
 1.0.15 (2017-11-16)
 -------------------
 *update to use non deprecated pluginlib macro

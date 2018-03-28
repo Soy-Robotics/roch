@@ -1,6 +1,16 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change log for package roch_teleop
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.16 (2018-03-28)
+-------------------
+* Update xbox360_teleop.launch
+* Update CMakeLists.txt
+* Update xbox360_teleop.launch
+* Remap email and website.
+* Update roch_xbox_joy.cpp
+  Add linear & angular speed increase and reduce, buttons are up and down select key.
+* Contributors: SawYer-Robotics, Soy Robotics, doudou0114
+
 1.0.15 (2017-11-16)
 -------------------
 

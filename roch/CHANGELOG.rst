@@ -1,6 +1,12 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.16 (2018-03-28)
+-------------------
+* Clear package.
+* Remap email and website.
+* Contributors: SawYer-Robotics, doudou0114
+
 1.0.15 (2017-11-16)
 -------------------
 

@@ -1,6 +1,14 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package roch_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1.0.16 (2018-03-28)
+-------------------
+* Deprecated rocon.
+* Deprecated roch_capabilities.
+* Remap email and website.
+* Remap official web.
+* Contributors: SawYer-Robotics, doudou0114
+
 1.0.15 (2017-11-16)
 -------------------
 *Support sick lms100.
