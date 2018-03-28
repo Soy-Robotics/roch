@@ -10,5 +10,5 @@ catkin_add_env_hooks(25.roch
 
 roslaunch_add_file_check(launch)
 
-install(DIRECTORY launch  config param images test
+install(DIRECTORY launch  config param images 
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
