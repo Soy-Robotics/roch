@@ -17,7 +17,6 @@
   <run_depend>roch_navigation</run_depend> 
   <run_depend>roch_teleop</run_depend> 
   <run_depend>roch_follower</run_depend> 
-  <run_depend>roch_rapps</run_depend> 
 
   <export>
     <metapackage/>
