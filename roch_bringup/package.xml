@@ -4,9 +4,9 @@
   <version>1.0.16</version>
   <description>Soy roch installation and integration package</description>
 
-  <author email="carlzhang@soyrobotics.com">Carl</author>
+  <author email="gchen@soyrobotics.com">Chen</author>
 
-  <maintainer email="carlzhang@soyrobotics.com">Carl</maintainer>
+  <maintainer email="gchen@soyrobotics.com">Chen</maintainer>
 
   <license>BSD</license>
 
