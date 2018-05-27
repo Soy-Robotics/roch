@@ -5,7 +5,7 @@
        Follower for the roch. Follows humans and robots around by following the centroid of a box points in front of the roch.
   </description>
 
-  <maintainer email="wzhang@softrobetch.com">Carl</maintainer>
+  <maintainer email="gchen@softrobetch.com">Chen</maintainer>
 
   <license>BSD</license>
 
