@@ -4,9 +4,9 @@
   <version>2.0.12</version>
   <description>Autonomous mapping and navigation demos for the SawYer Roch</description>
 
-  <author email="wzhang@softrobtech.com">Carl</author>
+  <author email="gchen@softrobtech.com">Chen</author>
 
-  <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
+  <maintainer email="gchen@softrobtech.com">Chen</maintainer>
 
   <url type="website">http://ros.org/wiki/roch_navigation</url>
   <url type="bugtracker">https://github.com/roch/roch/issues</url>
