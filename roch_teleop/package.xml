@@ -3,9 +3,9 @@
    <version>2.0.12</version>
   <description>SawYer roch controller configurations</description>
 
-  <author email="wzhang@softrobtech.com">Carl</author>
+  <author email="gchen@softrobtech.com">Chen</author>
 
-  <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
+  <maintainer email="gchen@softrobtech.com">Chen</maintainer>
   <url type="website">http://ros.org/wiki/roch_teleop</url>
   <url type="bugtracker">https://github.com/roch/roch/issues</url>
   <url type="repository">https://github.com/roch/roch</url>
