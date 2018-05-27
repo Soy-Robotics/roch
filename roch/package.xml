@@ -2,11 +2,11 @@
   <name>roch</name>
   <version>2.0.12</version>
   <description>roch Project</description>
-  <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
+  <maintainer email="gchen@softrobtech.com">Chen</maintainer>
 
   <license>BSD</license>
 
-  <author email="wzhang@softrobtech.com">Carl</author>
+  <author email="gchen@softrobtech.com">Chen</author>
   <url type="website">http://ros.org/wiki/roch</url>
   <url type="bugtracker">https://github.com/roch/roch/issues</url>
   <url type="repository">https://github.com/roch/roch</url>
