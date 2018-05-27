@@ -3,9 +3,9 @@
    <version>1.0.16</version>
   <description>Soy roch controller configurations</description>
 
-  <author email="carlzhang@soyrobotics.com">Carl</author>
+  <author email="gchen@soyrobotics.com">Chen</author>
 
-  <maintainer email="carlzhang@soyrobotics.com">Carl</maintainer>
+  <maintainer email="gchen@soyrobotics.com">Chen</maintainer>
   <url type="website">http://ros.org/wiki/roch_teleop</url>
   <url type="bugtracker">https://github.com/Soy-Robotics/roch/issues</url>
   <url type="repository">https://github.com/Soy-Robotics/roch</url>
