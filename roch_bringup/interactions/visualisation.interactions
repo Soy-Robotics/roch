@@ -1,0 +1,75 @@
+#########################################################################
+#  .-----------------------------------------------------------------.  #
+# /  .-.                                                         .-.  \ #
+#|  /   \                                                       /   \  |#
+#| |\_.  |           Visualisation Interactions                |    /| |#
+#|\|  | /|                                                     |\  | |/|#
+#| `---' |                                                     | `---' |#
+#|       |                                                     |       |# 
+#|       |-----------------------------------------------------|       |#
+#\       |                                                     |       /#
+# \     /                                                       \     / #
+#  `---'                                                         `---'  #
+#########################################################################
+
+########################################        
+##       For Rocon 0.10.0             ##
+######################################## 
+#interactions:
+#    - name: View Model 
+#      group: 'Visualisation'
+#      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+#      #via roslaunch run will leave the terminal window.
+#      #command: roch_viz/view_model.launch
+#      #via rosrun will run this at background.
+#      command: rviz/rviz -d $(find roch_viz)/rviz/model.rviz
+#      description: Checkout Robot Model in Rviz.
+#      max: -1
+#      icon:
+#        resource_name: rocon_bubble_icons/rviz.png
+
+#    - name: View Robot 
+#      group: 'Visualisation'
+#      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+#      #via roslaunch run will leave the terminal window.
+#      #command: roch_viz/view_robot.launch
+#      #via rosrun will run this at background.
+#      command: rviz/rviz -d $(find roch_viz)/rviz/robot.rviz
+#      description: View the robot with basic sensor connections hooked up.
+#      max: -1
+#      icon:
+#        resource_name: rocon_bubble_icons/rviz.png
+
+#    - name: View Navigation 
+#      group: 'Visualisation'
+#      compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+#      #via roslaunch run will leave the terminal window.
+#      #command: roch_viz/view_navigation.launch
+#      #via rosrun will run this at background.
+#      command: rviz/rviz -d $(find roch_viz)/rviz/navigation.rviz
+#      description: Check the robot navigation in Rviz.
+#      max: -1
+#      icon:
+#        resource_name: rocon_bubble_icons/rviz.png
+
+#######################################        
+##       For Rocon 0.7.0             ##
+####################################### 
+
+ - name: roch_viz/view_model.launch
+   role: Visualisation
+   compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+   display_name: View Model
+   description: View the robot model (only).
+   max: -1
+   icon:
+     resource_name: rocon_bubble_icons/rviz.png
+     
+ - name: roch_viz/view_robot.launch
+   role: Visualisation
+   compatibility: rocon:/pc/*/hydro|indigo/precise|quantal|raring|saucy|trusty
+   display_name: View Robot
+   description: View the robot with basic sensor connections hooked up.
+   max: -1
+   icon:
+     resource_name: rocon_bubble_icons/rviz.png     

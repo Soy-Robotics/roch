@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <package>
   <name>roch_bringup</name>
-  <version>1.0.17</version>
-  <description>Soy roch installation and integration package</description>
+  <version>1.0.14</version>
+  <description>SawYer roch installation and integration package</description>
 
-  <author email="gchen@soyrobotics.com">Chen</author>
+  <author email="wzhang@softrobtech.com">Carl</author>
 
-  <maintainer email="gchen@soyrobotics.com">Chen</maintainer>
+  <maintainer email="wzhang@softrobtech.com">Carl</maintainer>
 
   <license>BSD</license>
 
-  <url type="bugtracker">https://github.com/Soy-Robotics/roch/issues</url>
-  <url type="repository">https://github.com/Soy-Robotics/roch</url>
+  <url type="bugtracker">https://github.com/SawYer-Robotics/roch/issues</url>
+  <url type="repository">https://github.com/SawYer-Robotics/roch</url>
   <url type="website">http://ros.org/wiki/roch_bringup</url>
 
   <buildtool_depend>catkin</buildtool_depend>
@@ -27,6 +27,7 @@
   <run_depend>roch_description</run_depend>
   <run_depend>roch_safety_controller</run_depend>
   <run_depend>roch_sensorpc</run_depend>
+  <run_depend>roch_capabilities</run_depend>
 <!--  <run_depend>roch_viz</run_depend>-->
   <run_depend>imu_filter_madgwick</run_depend>
   <run_depend>imu_transformer</run_depend>
@@ -43,13 +44,15 @@
   <run_depend>depthimage_to_laserscan</run_depend>
   <run_depend>zeroconf_avahi</run_depend>
   <run_depend>diagnostic_aggregator</run_depend>
+  <run_depend>rocon_interaction_msgs</run_depend>
+  <run_depend>rocon_app_manager_msgs</run_depend>
+  <run_depend>rocon_app_manager</run_depend> 
   <run_depend>laser_filters</run_depend>
   <run_depend>rgbd_launch</run_depend>
   <run_depend>nodelet</run_depend>
   <run_depend>robot_state_publisher</run_depend>
   <run_depend>diagnostic_aggregator</run_depend>
   <run_depend>rosbridge_server</run_depend>
-  <run_depend>lms1xx</run_depend>
 
   <export>
   </export>
